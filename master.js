@@ -4,100 +4,107 @@ const sleep = (time) => {
 }
 
 //?-------VARIABLES AND DECLARATIONS---------
-
+class barobj{
+    constructor(value,color)
+    {
+        this.value = value;
+        this.color = color;
+    }
+}
 var arr2 =[
-    {
-        value: 45,
-        color: "blue",
-    },
-    {
-        value: 78,
-        color: "blue",
-    },
-    {
-        value: 36,
-        color: "blue",
-    },
-    {
-        value: 4,
-        color: "blue",
-    },
-    {
-        value: 44,
-        color: "blue",
-    },
-    {
-        value: 77,
-        color: "blue",
-    },
-    {
-        value: 13,
-        color: "blue",
-    },
-    {
-        value: 3,
-        color: "blue",
-    },
-    {
-        value: 7,
-        color: "blue",
-    },
-    {
-        value: 26,
-        color: "blue",
-    },
-    {
-        value: 44,
-        color: "blue",
-    },
-    {
-        value: 14,
-        color: "blue",
-    },
-    {
-        value: 27,
-        color: "blue",
-    },
-    {
-        value: 89,
-        color: "blue",
-    },
-    {
-        value: 67,
-        color: "blue",
-    },
-    {
-        value: 16,
-        color: "blue",
-    },
-    {
-        value: 44,
-        color: "blue",
-    },
-    {
-        value: 10,
-        color: "blue",
-    },
-    {
-        value: 65,
-        color: "blue",
-    },
-    {
-        value: 73,
-        color: "blue",
-    },
-    {
-        value: 82,
-        color: "blue",
-    },
-    {
-        value: 91,
-        color: "blue",
-    },
-    {
-        value: 11,
-        color: "blue",
-    },
+
+    // {
+    //     value: 45,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 78,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 36,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 4,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 44,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 77,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 13,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 3,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 7,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 26,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 44,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 14,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 27,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 89,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 67,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 16,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 44,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 10,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 65,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 73,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 82,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 91,
+    //     color: "blue",
+    // },
+    // {
+    //     value: 11,
+    //     color: "blue",
+    // },
     
 ]
 
@@ -105,15 +112,36 @@ var arr2 =[
 var barcontainer = document.querySelector(".barcontainer");
 var bubblebtn = document.querySelector(".bubblesortbtn");
 var SpeedSliderVal = document.querySelector("#slider1");
+var ElementsSliderVal = document.querySelector("#slider2");
+var RandomArrBtn = document.querySelector("#generatearrbtn");
 
 
 //? ------EXECUTION--------------------------
+// arr2.push(new barobj(99,"blue"));
 window.addEventListener("load",function(){
+    renderInitialBars(ElementsSliderVal.value);
     renderBars();
 });
+RandomArrBtn.addEventListener("click",function(){
+    arr2 = [];
+    clearbars();
+    renderInitialBars(ElementsSliderVal.value);
+    // console.log(arr2);
+    renderBars();
+})
 bubblebtn.addEventListener("click",function(){
     bubbleSort();
 })
+ElementsSliderVal.addEventListener("change",function(){
+    arr2 = [];
+    clearbars();
+    renderInitialBars(ElementsSliderVal.value);
+    // console.log(arr2);
+    renderBars();
+
+})
+
+
 //? COLOR CHANGING-----------------------------
 function turnyellow(bara,barb)
 {
@@ -143,8 +171,23 @@ function turnred(bara,barb)
     renderBars();
     
 }
+function turnpurple(bar)
+{
+    bar.color= "purple";
+   
+    renderBars();
+    
+}
 
 //? -------------------------------------------
+function renderInitialBars(barcount) //function to generate random valued bars...only modifies arr2 with random values
+{
+    for(let i=0;i<barcount;i++)
+    {
+        arr2.push(new barobj(Math.floor((Math.random()*100)-1),"blue"))
+    }
+    console.log(arr2);
+}
 async function bubbleSort()
 {
     var currsize = arr2.length;
@@ -173,6 +216,7 @@ async function bubbleSort()
             turnblue(arr2[j],arr2[j+1]);
             await sleep(speedval);
         }
+        turnpurple(arr2[arr2.length-1-i]);
     }
 
 };
