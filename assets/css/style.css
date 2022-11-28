@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: antiquewhite;
+}
+.optioncontainer{
+    display: flex;
+    justify-content:space-evenly;
+    padding: 40px 0px;
+}
+.master_container{
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.optionbtn{
+    margin: 0px 10px;
+}
+.barcontainer{
+    text-align: center;
+    display: flex;
+    justify-content:center;
+}
+.bars{
+    width: 10px;
+    /* height: 450px; */
+    margin-left: 5px;
+}
+.slidercontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around   ;
+}
+.slider{
+        padding: 2px 0px;
+}
