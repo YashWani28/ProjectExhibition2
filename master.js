@@ -110,15 +110,25 @@ var arr2 =[
 
 //?-------DOM ELEMENTS SELECTED HERE---------
 var barcontainer = document.querySelector(".barcontainer");
+
 var bubblebtn = document.querySelector(".bubblesortbtn");
+var insertionbtn = document.querySelector(".insertionsortbtn");
+var selectionbtn = document.querySelector(".selectionsortbtn");
+var mergebtn = document.querySelector(".mergesortbtn");
+var heapbtn = document.querySelector(".heapsortbtn");
+
 var SpeedSliderVal = document.querySelector("#slider1");
 var ElementsSliderVal = document.querySelector("#slider2");
 var RandomArrBtn = document.querySelector("#generatearrbtn");
+
+var tobedisabled = document.querySelectorAll(".disenable");
 
 
 //? ------EXECUTION--------------------------
 // arr2.push(new barobj(99,"blue"));
 window.addEventListener("load",function(){
+    console.log("loaded successfully");
+    SetZoomSort();
     renderInitialBars(ElementsSliderVal.value);
     renderBars();
 });
@@ -179,17 +189,18 @@ function turnpurple(bar)
     
 }
 
-//? -------------------------------------------
+//? --FUNCTIONS---------------------------------
 function renderInitialBars(barcount) //function to generate random valued bars...only modifies arr2 with random values
 {
     for(let i=0;i<barcount;i++)
     {
-        arr2.push(new barobj(Math.floor((Math.random()*100)-1),"blue"))
+        arr2.push(new barobj(Math.floor((Math.random()*100+1)),"blue"))
     }
     console.log(arr2);
 }
 async function bubbleSort()
 {
+    disable();
     var currsize = arr2.length;
     for(let i=0;i<arr2.length;i++)
     {
@@ -217,7 +228,9 @@ async function bubbleSort()
             await sleep(speedval);
         }
         turnpurple(arr2[arr2.length-1-i]);
+        
     }
+    enable();
 
 };
 async function renderBars() {
@@ -238,6 +251,7 @@ function renderSinglebar(barnumber)
     let barheight = setHeight(barnumber.value);
     // console.log("hi");
     let bar = document.createElement("div");
+    bar.textContent = "     "+barnumber.value;
     bar.classList.add("bars");
     // bar.classList.add("blue");
     bar.style.height = `${barheight}px`;
@@ -250,15 +264,32 @@ async function clearbars()
 };
 function setHeight(bar)
 {
-    return bar*5;
+    return bar*4;
 };
-
-//? GENERATE NEW ARRAY FEATURE----------
-function generateNewArray(size)
+function disable()
 {
-    
 
+    tobedisabled.forEach(element => {
+        element.disabled = true;
+        element.classList.add("disable")
+    });
 }
+function enable()
+{
+    tobedisabled.forEach(element => {
+        element.disabled = false;
+        element.classList.remove("disable")
+
+    });
+}
+function SetZoomSort()
+{
+    var Page = document.getElementById('Body');
+    var zoom = "100%";
+    Page.style.zoom = zoom;
+    return false;
+}
+
 
 
 //? UTILITY FUNCTIONS for understanding and debugging---------

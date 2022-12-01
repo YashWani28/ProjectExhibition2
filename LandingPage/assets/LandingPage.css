@@ -1,0 +1,217 @@
+body{
+    background-color: hsl(86, 45%, 54%);
+    background-image: cover;
+    padding:0;
+    margin:0;
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    overflow: hidden;
+}
+
+.nav{
+    width:100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    gap:1000px;
+}
+
+.tuo{
+    margin-top: 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.tyo{
+    height:40px;
+    width:70px;
+    border: none;
+    background-color: transparent;
+}
+
+.tyo:hover{
+    background-color: orange;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tyr{
+    height:40px;
+    width:80px;
+    background-color: orange;
+    border:none;
+    border-radius: 4px;
+}
+
+.tyr:hover{
+    background-color: goldenrod;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tre{
+    font-size: medium;
+    font-weight: 200;
+    color: white;
+}
+
+.logo{
+    margin-top:-20px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap:1px;
+}
+
+.rtc{
+    margin-top: 24px;
+    margin-left: 48px;
+}
+
+.rtc img{
+    height:40px;
+    width:40px;
+}
+
+.tmt{
+    margin-top: 10px;
+    margin-left: -28px;
+}
+
+.rzt{
+    margin-left: 40px;
+    color:aqua;
+}
+
+.tzt{
+    margin-left:100px;
+    margin-top:-60px;
+    color:yellow;
+}
+
+.main{
+    display:flex;
+    gap:160px;
+    margin-bottom: 40px;
+}
+
+.content{
+    margin-left: 60px;
+    margin-top:52px;
+}
+
+.conte{
+    font-size:82px;
+    color: white;
+}
+
+.anima{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 240px;
+}
+
+.anime{
+    height: 120px;
+    width:60px;
+    border-bottom: 2px solid blue;
+    border-top: 2px solid blue;
+    border-left: 2px solid blue;
+    border-right: 2px solid blue;
+    background-color: blue;
+    margin-top: 200px;
+    margin-left: 40px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.animea{
+    height: 140px;
+    width:60px;
+    border-bottom: 2px solid red;
+    border-top: 2px solid red;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    background-color: red;
+    margin-top: 180px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.animeb{
+    height: 160px;
+    width:60px;
+    border-bottom: 2px solid green;
+    border-top: 2px solid green;
+    border-left: 2px solid green;
+    border-right: 2px solid green;
+    background-color: green;
+    margin-top: 160px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.animec{
+    height: 180px;
+    width:60px;
+    border-bottom: 2px solid yellow;
+    border-top: 2px solid yellow;
+    border-left: 2px solid yellow;
+    border-right: 2px solid yellow;
+    background-color: yellow;
+    margin-top: 140px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.animed{
+    height: 200px;
+    width:60px;
+    border-bottom: 2px solid orange;
+    border-top: 2px solid orange;
+    border-left: 2px solid orange;
+    border-right: 2px solid orange;
+    background-color: orange;
+    margin-top: 120px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+}
+
+.animee{
+    height: 220px;
+    width:60px;
+    border-bottom: 2px solid violet;
+    border-top: 2px solid violet;
+    border-left: 2px solid violet;
+    border-right: 2px solid violet;
+    background-color: violet;
+    margin-top: 100px;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.fine{
+    margin-top:440px;
+    margin-left: -1380px;
+}
+
+.sim{
+    height:60px;
+    width:200px;
+    color:white;
+    background-color: orange;
+    border-radius: 4px;
+    cursor: pointer;
+    border:none;
+}
+
+.wer{
+    font-size: large;
+    font-weight: 200;
+}
+
+.sim:hover{
+    background-color: goldenrod;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+}

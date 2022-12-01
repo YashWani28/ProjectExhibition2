@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: antiquewhite;
+    background-color: #02433582;
 }
 .optioncontainer{
     display: flex;
@@ -24,9 +24,14 @@ body{
     justify-content:center;
 }
 .bars{
-    width: 10px;
+    width: 15px;
     /* height: 450px; */
     margin-left: 5px;
+    color: white;
+    word-wrap: break-word;
+    font-size: 14px;
+    font-weight: bolder;
+    
 }
 .slidercontainer{
     display: flex;
@@ -35,4 +40,8 @@ body{
 }
 .slider{
         padding: 2px 0px;
+}
+.disable{
+    color: #e5050591;
+    
 }

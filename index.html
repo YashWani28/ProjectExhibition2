@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
-<body>
+<body id="Body">
     <header>
         <div class="master_container">
             <div class="rndmarrbtn_container">
-                <button id="generatearrbtn">Generate New Array!!</button>
+                <button id="generatearrbtn" class="disenable">Generate New Array!!</button>
     
             </div>
             <div class="slidercontainer">
                 <label for="slider1">Speed of Sorting</label>
                 <input type="range" class="slider" id="slider1" min="5" max="500">
-                <label for="slider2">Number of elements</label>
-                <input type="range" class="slider" id="slider2" min="4" max="70" value="10">
+                <label for="slider2" class="disenable">Number of elements</label>
+                <input type="range" class="slider disenable" id="slider2" min="4" max="50" value="10">
 
             </div>
             <div class="optioncontainer">
-                <button class="bubblesortbtn optionbtn">Bubble Sort</button>
-                <button class="optionbtn">Insertion Sort</button>
-                <button class="optionbtn">Selection Sort</button>
-                <button class="optionbtn">Merge Sort</button>
-                <button class="optionbtn">Heap Sort</button>
+                <button class="bubblesortbtn optionbtn disenable">Bubble Sort</button>
+                <button class="insertionsortbtn optionbtn disenable">Insertion Sort</button>
+                <button class="selectionsortbtn optionbtn disenable">Selection Sort</button>
+                <button class="mergesortbtn optionbtn disenable">Merge Sort</button>
+                <button class="heapsortbtn optionbtn disenable">Heap Sort</button>
     
             </div>
 
