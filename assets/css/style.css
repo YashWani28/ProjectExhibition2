@@ -45,3 +45,7 @@ body{
     color: #e5050591;
     
 }
+
+.hide_display{
+    display: none;
+}

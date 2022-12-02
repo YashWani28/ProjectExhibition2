@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/modal.css">
     <title>Document</title>
 </head>
 <body id="Body">
@@ -34,6 +35,35 @@
     </header>
 
     <div class="barcontainer">
+        
+    </div>
+    
+    <div class="sortmodal_container">
+        <div class="sortmodal">
+            <header class="sortmodalheader">Welcome to Sorting Visualizer</header>
+            <div class="sortmodalbody">
+
+                <div class="sortmodalcontent bodyelement">With this sorting Visualizer, you can visualize the sorting of an array as it happens. You can choose the type of sorting algorithm you want to visualize. You can also adjust the speed and the number of elements in the array using the 2 sliders provided. We have color coded each step of the sorting to make your experience great. Take a look at the color code given at the right</div>
+                <aside class="colorcontainer bodyelement">
+                    <div class="asidetitle">Color Code</div>
+                    <ul class="colorindexlist">
+                        <li class="yellow colorinfo">YELLOW - comparing 2 elements</li>
+                        <li class="blue colorinfo">BLUE - origninal color of all elements</li>
+                        <li class="green">GREEN - if 2 elements are in the right order</li>
+                        <li class="red colorinfo">RED - if 2 elements are in the wrong order</li>
+                        <li class="purple colorinfo">PURPLE - elements that have been sorted</li>
+
+                    </ul>
+    
+                </aside>
+            </div>
+            <div class="visbtncontainer">
+
+                <button class="startvisbtn">Start Visualizing !!!</button>
+            </div>
+        </div>
+    </div>
+    <div class="trans_layer">
         
     </div>
     <script src="master.js" type="module"></script>

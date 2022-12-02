@@ -123,11 +123,17 @@ var RandomArrBtn = document.querySelector("#generatearrbtn");
 
 var tobedisabled = document.querySelectorAll(".disenable");
 
+/*Modal variables*/
+var modalcontainer = document.querySelector(".sortmodal_container");
+var visbtn = document.querySelector(".startvisbtn");
+var translayer = document.querySelector(".trans_layer");
+
 
 //? ------EXECUTION--------------------------
 // arr2.push(new barobj(99,"blue"));
 window.addEventListener("load",function(){
     console.log("loaded successfully");
+    showmodal();
     SetZoomSort();
     renderInitialBars(ElementsSliderVal.value);
     renderBars();
@@ -149,6 +155,9 @@ ElementsSliderVal.addEventListener("change",function(){
     // console.log(arr2);
     renderBars();
 
+})
+visbtn.addEventListener("click",function(){
+    hidemodal();
 })
 
 
@@ -273,6 +282,15 @@ function disable()
         element.disabled = true;
         element.classList.add("disable")
     });
+}
+function showmodal(){
+    modalcontainer.classList.remove("hide_display");
+    translayer.classList.remove("hide_display");
+}
+function hidemodal()
+{
+    modalcontainer.classList.add("hide_display");
+    translayer.classList.add("hide_display");
 }
 function enable()
 {
