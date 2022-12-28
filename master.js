@@ -432,10 +432,11 @@ async function merge(auxarr,left,mid,right){
             p2++;
             indx++;
         }
- //! we will need to create deep copy of arr2 and then push it inside arrofarr
+        //! we will need to create deep copy of arr2 and then push it inside arrofarr
         let topushIn_arrofarr = JSON.parse(JSON.stringify(auxarr));
         animations.arrOfarr.push(topushIn_arrofarr);
         animations.sequence.push("a");//stands for read next 2 values from arrofarr
+        //? the following if else snippet is done to avoid the greencolor problem...the value of p1 or p2 is already increamented by the time green is pushed in instruction sequence. so we decrement it based on whether if or else was executed
         if(greendeterminer===0)
         {
             animations.green.push(p1-1);
