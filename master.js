@@ -108,8 +108,10 @@ var arr2 =[
     
 ]
 var animations={
-    turningred: [],
-    sorted: [],
+    red : [],
+    arrOfarr :[],
+    green : [],
+    sequence: [],
 }
 //?-------DOM ELEMENTS SELECTED HERE---------
 var barcontainer = document.querySelector(".barcontainer");
@@ -163,17 +165,27 @@ bubblebtn.addEventListener("click",function(){
     bubbleSort();
 })
 mergebtn.addEventListener("click",function(){
-
-    
+    disable();
+    // console.log(arr2);
+    animations.green=[];
+    animations.red=[];
+    animations.arrOfarr=[];
+    animations.sequence=[];
     printarr();
     console.log("");
-    mergeSort(arr2,0,arr2.length-1);
-    printarr();
+    var auxarr = JSON.parse(JSON.stringify(arr2));
+    mergeSort(auxarr,0,arr2.length-1);
+    console.log("");
+    console.log(animations);
+   
+    AnimateMergeSort(animations);
+        
+    
 
 })
 
 
-//? COLOR CHANGING-----------------------------
+//? COLOR CHANGING AND ANIMATION FUNCTIONS-----------------------------
 function turnyellow(bara,barb)
 {
     bara.color= "yellow";
@@ -185,21 +197,33 @@ function turnblue(bara,barb)
 {
     bara.color= "blue";
     barb.color= "blue";
-    renderBars();
+    if(renderBars())
+    {
+        return true;
+    }
+    
     
 }
 function turngreen(bara,barb)
 {
     bara.color= "green";
     barb.color= "green";
-    renderBars();
+    if(renderBars())
+    {
+        return true;
+    }
+    
     
 }
 function turnred(bara,barb)
 {
     bara.color= "red";
     barb.color= "red";
-    renderBars();
+    if(renderBars())
+    {
+        
+        return true;
+    }
     
 }
 function turnpurple(bar)
@@ -207,6 +231,21 @@ function turnpurple(bar)
     bar.color= "purple";
    
     renderBars();
+    
+}
+async function AnimateMergeSort(instructions){
+    let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
+
+    for(let i=0;i<instructions.arrOfarr.length;i++)
+    {
+        arr2 = JSON.parse(JSON.stringify(instructions.arrOfarr[i]));
+
+        renderBars();
+        await sleep(speedval);
+    }
+    enable();
+    return true;
+    
     
 }
 
@@ -331,11 +370,10 @@ async function bubbleSort()
 //     await sleep(speedval);
     
 // }
-async function merge(arr2,left,mid,right){
+async function merge(auxarr,left,mid,right){
+    // //clearing all animations 
     
-    
-    let temparr = JSON.parse(JSON.stringify(arr2));
-
+    let temparr = JSON.parse(JSON.stringify(auxarr));
     let p1= left;
     let p2=mid+1;
 
@@ -344,6 +382,9 @@ async function merge(arr2,left,mid,right){
     let indx = p1;
     while(p1<=mid && p2<=right)
     {
+        animations.red.push(p1);
+        animations.red.push(p2);
+        animations.sequence.push("r"); //stands for read next 2 values from red array
         if(temparr[p1].value<=temparr[p2].value)
         {
             
@@ -351,32 +392,43 @@ async function merge(arr2,left,mid,right){
             p1++;
         }
         else{
-            let temp = arr2[p2].value;
+            let temp = auxarr[p2].value;
             for(let i=p2;i>indx;i--)
             {
-                arr2[i].value=arr2[i-1].value;
+                auxarr[i].value=auxarr[i-1].value;
             }
-            arr2[indx].value=temp;
+            auxarr[indx].value=temp;
+            // //! we will need to create deep copy of arr2 and then push it inside arrofarr
+            // let topushIn_arrofarr = JSON.parse(JSON.stringify(auxarr));
+            // animations.arrOfarr.push(topushIn_arrofarr);
+            // animations.sequence.push("a");//stands for read next 2 values from arrofarr
             p2++;
             indx++;
         }
-        
+ //! we will need to create deep copy of arr2 and then push it inside arrofarr
+        let topushIn_arrofarr = JSON.parse(JSON.stringify(auxarr));
+        animations.arrOfarr.push(topushIn_arrofarr);
+        animations.sequence.push("a");//stands for read next 2 values from arrofarr
+       
+        animations.green.push(p1);
+        animations.green.push(p2);
+        animations.sequence.push("g");//stands for read next 2 values from green array
     }
-    // console.log(arr2);
+    // console.log(auxarr);
     while(p2<=right)
     {
-        temp.push(arr2[p2].value);
+        temp.push(auxarr[p2].value);
         p2++;
     }
     while(p1<=mid)
     {
-        temp.push(arr2[p1].value);
+        temp.push(auxarr[p1].value);
         p1++;
 
     }
     return;
 }
-async function mergeSort(arr,left,right)
+async function mergeSort(auxarr,left,right)
 {
    
     if(left>=right)
@@ -385,15 +437,16 @@ async function mergeSort(arr,left,right)
     }
     let mid = Math.floor(left +(right-left)/2);
     
-    mergeSort(arr,left,mid);
+    mergeSort(auxarr,left,mid);
     
-    mergeSort(arr,mid+1,right);
+    mergeSort(auxarr,mid+1,right);
     
-    merge(arr,left,mid,right);
-    return;
+    merge(auxarr,left,mid,right);
+   
     
 }
 async function renderBars() {
+    // console.log(arr2);
     clearbars();
     for(let i=0;i<arr2.length;i++) {
         renderSinglebar(arr2[i]);
@@ -405,6 +458,7 @@ async function renderBars() {
         // bar.style.height = `${barheight}px`;
         // barcontainer.appendChild(bar);
     }
+    
 };
 function renderSinglebar(barnumber)
 {
