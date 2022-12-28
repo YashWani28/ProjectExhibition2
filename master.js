@@ -234,14 +234,43 @@ function turnpurple(bar)
     
 }
 async function AnimateMergeSort(instructions){
-    let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
-
-    for(let i=0;i<instructions.arrOfarr.length;i++)
+    let speedval = 505 - (SpeedSliderVal.value);//*it will change at runtime but will lag a little
+    let redptr=0;
+    let greenptr = 0;
+    let arrptr=0;
+    for(let x=0;x<instructions.sequence.length;x++)
     {
-        arr2 = JSON.parse(JSON.stringify(instructions.arrOfarr[i]));
+        let instruct = instructions.sequence[x];
+        if(instruct === "r")
+        {
+            let red1=instructions.red[redptr];
+            let red2=instructions.red[redptr+1];
+            turnred(arr2[red1],arr2[red2]);
+            await sleep(speedval);
+            turnblue(arr2[red1],arr2[red2]);
+            redptr+=2;
+        }
+        else if(instruct === "g")
+        {
+            let green1=instructions.green[greenptr];
+            let green2=instructions.green[greenptr+1];
+            turngreen(arr2[green1],arr2[green2]);
+            await sleep(speedval);
+            turnblue(arr2[green1],arr2[green2]);
+            greenptr+=2;
+        }
+        else if(instruct === "a")
+        {
+            // for(let i=0;i<instructions.arrOfarr.length;i++)
+            // {
+                arr2 = JSON.parse(JSON.stringify(instructions.arrOfarr[arrptr]));
+                renderBars();
+                await sleep(speedval);
+                arrptr++;
+            // }
 
-        renderBars();
-        await sleep(speedval);
+        }
+
     }
     enable();
     return true;
@@ -382,26 +411,24 @@ async function merge(auxarr,left,mid,right){
     let indx = p1;
     while(p1<=mid && p2<=right)
     {
+        let greendeterminer = 0;//just to solve the greencolor bug
         animations.red.push(p1);
         animations.red.push(p2);
         animations.sequence.push("r"); //stands for read next 2 values from red array
         if(temparr[p1].value<=temparr[p2].value)
-        {
+        {    
             
             indx++;
             p1++;
         }
         else{
+            greendeterminer=1;
             let temp = auxarr[p2].value;
             for(let i=p2;i>indx;i--)
             {
                 auxarr[i].value=auxarr[i-1].value;
             }
             auxarr[indx].value=temp;
-            // //! we will need to create deep copy of arr2 and then push it inside arrofarr
-            // let topushIn_arrofarr = JSON.parse(JSON.stringify(auxarr));
-            // animations.arrOfarr.push(topushIn_arrofarr);
-            // animations.sequence.push("a");//stands for read next 2 values from arrofarr
             p2++;
             indx++;
         }
@@ -409,9 +436,15 @@ async function merge(auxarr,left,mid,right){
         let topushIn_arrofarr = JSON.parse(JSON.stringify(auxarr));
         animations.arrOfarr.push(topushIn_arrofarr);
         animations.sequence.push("a");//stands for read next 2 values from arrofarr
-       
-        animations.green.push(p1);
-        animations.green.push(p2);
+        if(greendeterminer===0)
+        {
+            animations.green.push(p1-1);
+            animations.green.push(p2);
+        }
+        else{
+            animations.green.push(p1);
+            animations.green.push(p2-1);
+        }
         animations.sequence.push("g");//stands for read next 2 values from green array
     }
     // console.log(auxarr);
