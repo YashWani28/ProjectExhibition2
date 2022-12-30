@@ -113,6 +113,16 @@ var animations={
     green : [],
     sequence: [],
 }
+var quickSortanimations={
+    yellow: [],
+    green: [],
+    red: [],
+    arrofarr : [],
+    purple: [],
+    sequence: [],
+    
+}
+
 //?-------DOM ELEMENTS SELECTED HERE---------
 var barcontainer = document.querySelector(".barcontainer");
 
@@ -121,6 +131,7 @@ var insertionbtn = document.querySelector(".insertionsortbtn");
 var selectionbtn = document.querySelector(".selectionsortbtn");
 var mergebtn = document.querySelector(".mergesortbtn");
 var heapbtn = document.querySelector(".heapsortbtn");
+var quickbtn = document.querySelector(".quicksortbtn");
 
 var SpeedSliderVal = document.querySelector("#slider1");
 var ElementsSliderVal = document.querySelector("#slider2");
@@ -142,7 +153,20 @@ window.addEventListener("load",function(){
     SetZoomSort();
     renderInitialBars(ElementsSliderVal.value);
     renderBars();
+    globalThis.blocks = [];
+    blocks = document.querySelectorAll(".bars");
+    //! A MUCH BETTER WAY YOU KNOW
+    // let temp=blocks[7].textContent;
+    // blocks[7].textContent=blocks[0].textContent;
+    // blocks[0].textContent=temp;
+    
+    // temp = blocks[7].style.height;
+    // blocks[7].style.height = blocks[0].style.height;
+    // blocks[0].style.height = temp;
+
+
 });
+
 RandomArrBtn.addEventListener("click",function(){
     arr2 = [];
     clearbars();
@@ -175,12 +199,40 @@ mergebtn.addEventListener("click",function(){
     console.log("");
     var auxarr = JSON.parse(JSON.stringify(arr2));
     mergeSort(auxarr,0,arr2.length-1);
+    auxarr = [];
     console.log("");
     console.log(animations);
    
     AnimateMergeSort(animations);
         
     
+
+})
+quickbtn.addEventListener("click",async function(){
+    
+    // quickSortanimations.arrofarr = [];
+    // var quickSort1arr = getarr2values();
+    // // console.log(quickSort1arr);//*WORKING
+    // quickSort1(quickSort1arr,0,quickSort1arr.length);
+    // quickSort(auxarr,0,arr2.length);
+    // // console.log(quickSortanimations);
+    // // AnimateQuickSort(quickSortanimations);
+
+    var quickSort1arr = getarr2values();
+    
+    // var auxarr = JSON.parse(JSON.stringify(arr2));
+    let promise = new Promise(async function(resolve,reject){
+        await quickSort1(quickSort1arr,0,arr2.length);
+        resolve();
+
+    })
+    promise.then(async function(){
+        turnallpurple();
+    }
+    )
+    
+    
+    // console.log(quickSort1arr);
 
 })
 
@@ -233,13 +285,29 @@ function turnpurple(bar)
     renderBars();
     
 }
+function turnsinglered(bar)
+{
+    bar.color= "red";
+    renderBars();
+}
+function turnsinglegreen(bar)
+{
+    bar.color= "green";
+    renderBars();
+}
+function turnsingleblue(bar)
+{
+    bar.color= "blue";
+    renderBars();
+}
 async function AnimateMergeSort(instructions){
-    let speedval = 505 - (SpeedSliderVal.value);//*it will change at runtime but will lag a little
     let redptr=0;
     let greenptr = 0;
     let arrptr=0;
+    console.log(instructions);
     for(let x=0;x<instructions.sequence.length;x++)
     {
+        let speedval = 505 - (SpeedSliderVal.value);//*it will change at runtime but will lag a little
         let instruct = instructions.sequence[x];
         if(instruct === "r")
         {
@@ -272,9 +340,64 @@ async function AnimateMergeSort(instructions){
         }
 
     }
+    for(let i=0;i<arr2.length;i++)
+    {
+        turnpurple(arr2[i]);
+        await sleep(32);
+    }
     enable();
     return true;
     
+    
+}
+async function AnimateQuickSort(Qinstructions){
+    let speedval = 505 - (SpeedSliderVal.value);//*it will change at runtime but will lag a little
+    
+    // for(let i=0;i<Qinstructions.arrofarr.length;i++)
+    // {
+    //     arr2 = JSON.parse(JSON.stringify(Qinstructions.arrofarr[i]));
+    //     renderBars();
+    //     await sleep(speedval);
+    // }
+    let redptr = 0;
+    let greenptr = 0;
+    let yellowptr = 0;
+    let arrptr =0;
+    let purpleptr = 0;
+    for(let i=0;i<Qinstructions.sequence.length;i++)
+    {
+        let instruct = Qinstructions.sequence[i];
+        if(instruct === "g")
+        {
+            turnsinglegreen(arr2[Qinstructions.green[greenptr]]);
+            await sleep(speedval);
+            turnsingleblue(arr2[Qinstructions.green[greenptr]]);
+            greenptr++;
+
+        }
+        if(instruct === "r")
+        {
+            turnsinglered(arr2[Qinstructions.red[redptr]]);
+            await sleep(speedval);
+            turnsingleblue(arr2[Qinstructions.red[redptr]]);
+            redptr++;
+        }
+        if(instruct === "a")
+        {
+            arr2 = JSON.parse(JSON.stringify(Qinstructions.arrofarr[arrptr]));
+            renderBars();
+            await sleep(speedval);
+            arrptr++;
+        }
+    }
+}
+async function turnallpurple()
+{
+    for(let i=0;i<blocks.length;i++)
+    {
+        blocks[i].style.backgroundColor="purple";
+
+    }
     
 }
 
@@ -284,21 +407,37 @@ function renderInitialBars(barcount) //function to generate random valued bars..
     
     // arr2=[
     //     {
-    //         value: 6,
+    //         value: 15,
     //         color: "blue",
     //     },
     //     {
-    //         value: 5,
+    //         value: 35,
     //         color: "blue",
     //     },
     //     {
-    //         value: 4,
+    //         value: 29,
     //         color: "blue",
     //     },
     //     {
-    //         value: 3,
+    //         value: 7,
     //         color: "blue",
-    //     },    
+    //     },
+    //     {
+    //         value: 9,
+    //         color: "blue",
+    //     },
+    //     {
+    //         value: 79,
+    //         color: "blue",
+    //     },
+    //     {
+    //         value: 23,
+    //         color: "blue",
+    //     },
+    //     {
+    //         value: 73,
+    //         color: "blue",
+    //     },       
     // ]
     for(let i=0;i<barcount;i++)
     {
@@ -307,6 +446,7 @@ function renderInitialBars(barcount) //function to generate random valued bars..
     }
     console.log(arr2);
 }
+//? --SORTS AND THEIR FUNCTIONS------------------------
 async function bubbleSort()
 {
     disable();// disables all the other buttons 
@@ -342,63 +482,6 @@ async function bubbleSort()
     enable();
 
 };
-// async function merge(arr2,left,mid,right){
-//     let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
-    
-//     let p1= left;
-//     let p2=mid+1;
-//     let temp= [];
-//     while(p1<=mid && p2<=right)
-//     {
-//         if(arr2[p1].value<arr2[p2].value)
-//         {
-//             temp.push(arr2[p1].value);
-//             p1++;
-//         }
-//         else{
-//             temp.push(arr2[p2].value);
-//             p2++;
-//         }
-        
-//     }
-//     while(p2<=right)
-//     {
-//         temp.push(arr2[p2].value);
-//         p2++;
-//     }
-//     while(p1<=mid)
-//     {
-//         temp.push(arr2[p1].value);
-//         p1++;
-
-//     }
-//     let index = 0;
-//     for(let i=left;i<=right;i++)
-//     {
-//         arr2[i].value=temp[index];
-//         index++;
-        
-       
-//     }
-//     return;
-// }
-// async function mergeSort(arr,left,right)
-// {
-//     let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
-//     if(left>=right)
-//     {
-//         return ;
-//     }
-//     let mid = Math.floor(left +(right-left)/2);
-    
-//     mergeSort(arr,left,mid);
-    
-//     mergeSort(arr,mid+1,right);
-    
-//     merge(arr,left,mid,right);
-//     await sleep(speedval);
-    
-// }
 async function merge(auxarr,left,mid,right){
     // //clearing all animations 
     
@@ -479,6 +562,167 @@ async function mergeSort(auxarr,left,right)
    
     
 }
+/*madness starts here */
+async function partition1(quickSort1arr,low,high)
+{
+    console.log(quickSort1arr);
+    blocks = document.querySelectorAll(".bars");
+    let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
+    let pivot = quickSort1arr[low];
+    blocks[low].style.backgroundColor="yellow";
+    await sleep(speedval);
+    let i = low;
+    let j = high-1;
+    while(i<j)
+    {
+        while(quickSort1arr[i]<=pivot && i<quickSort1arr.length-1)
+        {
+            i++;
+            blocks[i].style.backgroundColor="green";
+            await sleep(speedval);
+            blocks[i].style.backgroundColor="blue";
+            
+
+        }
+        await sleep(speedval);
+        blocks[i].style.backgroundColor="red";
+        blocks[j].style.backgroundColor="green";
+        await sleep(speedval);
+        blocks[j].style.backgroundColor="blue";
+        while(quickSort1arr[j]>pivot && j>0)
+        {
+            j--;
+            blocks[j].style.backgroundColor="green";
+            await sleep(speedval);
+            blocks[j].style.backgroundColor="blue";
+            
+        }
+      
+        blocks[j].style.backgroundColor="red";
+        await sleep(speedval);
+
+        if(i<j)
+        {
+            let temp = quickSort1arr[j];
+            quickSort1arr[j] = quickSort1arr[i];
+            quickSort1arr[i] = temp;
+            swapbars(i,j);
+            await sleep(speedval);
+        }
+        //*console.log(quickSort1arr);
+        blocks[i].style.backgroundColor="green";
+        blocks[j].style.backgroundColor="green";
+        await sleep(speedval);
+        blocks[i].style.backgroundColor="blue";
+        blocks[j].style.backgroundColor="blue";
+        
+    }
+    let temp = quickSort1arr[low];
+    quickSort1arr[low] = quickSort1arr[j];
+    quickSort1arr[j] = temp;
+    //*console.log(quickSort1arr);
+    swapbars(low,j);
+    await sleep(speedval);
+    blocks[low].style.backgroundColor="blue";
+    blocks[j].style.backgroundColor="purple";
+    await sleep(speedval);
+    return j;
+}
+async function quickSort1(quickSort1arr,low,high)
+{
+    console.log(quickSort1arr);
+    if(low<high)
+    {
+        var mid = await partition1(quickSort1arr,low,high);
+        await quickSort1(quickSort1arr,low,mid);
+        await quickSort1(quickSort1arr,mid+1,high);
+        
+        
+    }
+}
+/*madness ends here */
+// async function partition(auxarr,low,high)
+// {
+//     // console.log(auxarr);
+//     let temparr = JSON.parse(JSON.stringify(auxarr));
+//     let pivot = temparr[low].value;
+//     quickSortanimations.yellow.push(low);//turn the pivot yellow
+//     quickSortanimations.sequence.push("y");
+//     let i = low;
+//     let j = high-1;
+//     while(i<j)
+//     {
+//         while(temparr[i].value<=pivot && i<temparr.length-1)
+//         {
+//             i++;
+//             quickSortanimations.green.push(i);
+//             quickSortanimations.sequence.push("g");
+
+//         }
+//         quickSortanimations.red.push(i)
+//         quickSortanimations.sequence.push("r");
+
+//         while(temparr[j].value>pivot && j>0)
+//         {
+//             j--;
+//             quickSortanimations.green.push(j);
+//             quickSortanimations.sequence.push("g");
+//         }
+//         quickSortanimations.red.push(j)
+//         quickSortanimations.sequence.push("r");
+
+//         if(i<j)
+//         {
+//             let temp1 = temparr[j].value;
+//             temparr[j].value = temparr[i].value;
+//             temparr[i].value = temp1;
+            
+//         }
+        
+//         // console.log(temparr);
+//         // console.log("");
+//         quickSortanimations.arrofarr.push(temparr);
+//         quickSortanimations.sequence.push("lol");
+
+
+//     }
+//     let temp = temparr[low].value;
+//     temparr[low].value = temparr[j].value;
+//     temparr[j].value = temp;
+
+//     // console.log(temparr);
+//     quickSortanimations.arrofarr.push(temparr);
+//     quickSortanimations.sequence.push("a");
+
+//     quickSortanimations.purple.push(j);
+//     quickSortanimations.sequence.push("p");
+
+//     auxarr = JSON.parse(JSON.stringify(temparr));
+//     return j;
+// }
+// async function quickSort(auxarr,low,high)
+// {
+//     if(low<high)
+//     {
+//         // console.log(auxarr);
+//         let mid = partition(auxarr,low,high);
+//         quickSort(auxarr,low,mid);
+//         quickSort(auxarr,mid+1,high);
+        
+//     }
+// }
+
+//? ---OTHER FUNCTIONS---------------------------------
+
+function swapbars(a,b){
+    let temp=blocks[a].textContent;
+    blocks[a].textContent=blocks[b].textContent;
+    blocks[b].textContent=temp;
+    
+    temp = blocks[a].style.height;
+    blocks[a].style.height = blocks[b].style.height;
+    blocks[b].style.height = temp;
+}
 async function renderBars() {
     // console.log(arr2);
     clearbars();
@@ -556,6 +800,17 @@ function printarr()
         console.log(element.value);
     });
 };
+function getarr2values()
+{
+    let arr = [];
+    
+    for(let i=0;i<arr2.length;i++)
+    {
+        // console.log("hi");
+        arr.push(arr2[i].value) ;
+    }
+    return arr;
+}
 function calltest()
 {
     console.log("called successfully");
