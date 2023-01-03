@@ -246,6 +246,18 @@ selectionbtn.addEventListener("click",function(){
     selectionSort(selectionSortarr);
     console.log(selectionSortarr);
 })
+insertionbtn.addEventListener("click",function(){
+    var insertionSortarr = getarr2values();
+    console.log(insertionSortarr);
+    insertionSort(insertionSortarr);
+    console.log(insertionSortarr);
+
+})
+heapbtn.addEventListener("click",function(){
+    var heaparr = getarr2values();
+    heapSort(heaparr);
+    console.log(heaparr);
+})
 
 
 //? COLOR CHANGING AND ANIMATION FUNCTIONS-----------------------------
@@ -695,7 +707,113 @@ async function selectionSort(arr)
     }
     enable();
 }
+async function insertionSort(arr){
+    disable();
+    for(let i=0;i<arr.length;i++)
+    {
+        blocks[i].style.backgroundColor = "yellow";
+        let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
+        blocks = document.querySelectorAll(".bars");
+        
+        await sleep(speedval)
+        let j=i;
+        while(i>0 && arr[j-1]>arr[j])
+        {
+            blocks[j].style.backgroundColor = "red";
+            blocks[j-1].style.backgroundColor = "red";
+            await sleep(speedval)
+            swapelements(arr,j-1,j);
+            swapbars(j-1,j);
+            await sleep(speedval);
+            blocks[j].style.backgroundColor = "green";
+            blocks[j-1].style.backgroundColor = "green";
+            await sleep(speedval);
+            blocks[j].style.backgroundColor = "blue";
+            blocks[j-1].style.backgroundColor = "blue";
+            await sleep(speedval);
+            j--;
 
+        }
+        blocks[i].style.backgroundColor = "blue";
+    }
+    turnallpurple();
+    enable();
+}
+async function heapify(arr, N, i)
+{
+    blocks=document.querySelectorAll(".bars");
+    
+    // console.log(arr);
+    var largest = i; // Initialize largest as root
+    var l = 2 * i + 1; // left = 2*i + 1
+    var r = 2 * i + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < N && arr[l] > arr[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < N && arr[r] > arr[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        
+        swapelements(arr,largest,i)
+        
+        blocks[i].style.backgroundColor="red";
+        blocks[largest].style.backgroundColor="red";
+        
+        heapify(arr, N, largest);
+    }
+}
+async function heapSort(arr)
+{
+    disable();
+    var N = arr.length;
+    
+    // Build heap (rearrange array)
+    for (var i = N-1; i >= 0; i--)
+    {
+        heapify(arr, N, i);
+        
+    }
+    
+    //? the below for loop will change the array according to the heap that is created in heap sort and render the bars accordingly to screen
+    for(let i=0;i<arr2.length;i++)
+    {
+        arr2[i].value = arr[i];
+    }
+    clearbars();
+    renderBars();
+    await sleep(4000);
+    // One by one extract an element from heap
+    for (var i = N - 1; i > 0; i--) {
+        let speedval = 505 - (SpeedSliderVal.value);//*it will change ar runtime but will lag a little
+        blocks = document.querySelectorAll(".bars");
+        // Move current root to end
+        blocks[0].style.backgroundColor="yellow";
+        await sleep(speedval);
+        
+        swapelements(arr,0,i);
+        swapbars(0,i);
+        await sleep(speedval);
+        
+
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
+        for(let i=0;i<arr2.length;i++)
+        {
+            arr2[i].value = arr[i];
+        }
+        arr2[i].color="purple";
+        clearbars();
+        renderBars();
+    }
+    blocks = document.querySelectorAll(".bars");
+    blocks[0].style.backgroundColor="purple"
+    enable();
+}
 /*/*madness  here 
 async function partition(auxarr,low,high)
 {

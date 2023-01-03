@@ -17,6 +17,29 @@ body{
 }
 .optionbtn{
     margin: 0px 10px;
+    background-color: white;
+    border-style: solid 1px black;
+    color: purple;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}
+.optionbtn:hover{
+    background-color: rgb(225, 158, 234);
+    
+}
+#generatearrbtn{
+    margin: 0px 10px;
+    background-color: white;
+    border-style: solid 1px black;
+    color: rgb(23, 41, 241);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}
+#generatearrbtn:hover{
+    background-color: rgb(152, 167, 240);
+    
 }
 .barcontainer{
     text-align: center;
