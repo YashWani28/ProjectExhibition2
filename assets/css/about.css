@@ -1,0 +1,216 @@
+*my{
+    zoom: 100%;
+}
+body{
+    background-color: hsl(86, 45%, 54%);
+    background-image: cover;
+    padding:0;
+    margin:0;
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+}
+
+.nav{
+    width:100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    gap:1000px;
+}
+
+.tuo{
+    margin-top: 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.tyo{
+    height:40px;
+    width:70px;
+    background-color: orange;
+    border: none;
+}
+
+.tyr:hover{
+    background-color: orange;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tyr{
+    height:40px;
+    width:80px;
+    border:none;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.tyo:hover{
+    background-color: goldenrod;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tre{
+    font-size: medium;
+    font-weight: 200;
+    color: white;
+}
+
+.logo{
+    margin-top:-20px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap:1px;
+}
+
+.rtc{
+    margin-top: 24px;
+    margin-left: 48px;
+}
+
+.rtc img{
+    height:40px;
+    width:40px;
+}
+
+.tmt{
+    margin-top: 10px;
+    margin-left: -28px;
+}
+
+.rzt{
+    margin-left: 40px;
+    color:aqua;
+}
+
+.tzt{
+    margin-left:100px;
+    margin-top:-60px;
+    color:yellow;
+}
+
+.main{
+    display:flex;
+    flex-direction: column;
+    margin-top: 36px;
+    gap: 40px;
+}
+
+.rex {
+    color: white;
+    font-size: 60px;
+    margin-left: 400px;
+}
+
+.about{
+    display: flex;
+    flex-direction: column;
+    gap:60px;
+    margin-left: 30px;
+}
+
+.deo{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.leo{
+    color:yellow;
+    font-size: 36px;
+    font-weight: 200;
+}
+
+.mainc{
+    display: flex;
+    flex-direction: row;
+    gap:16px;
+}
+
+.mainc img{
+    height:300px;
+}
+
+.keo{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.teo{
+    display: flex;
+    flex-direction: column;
+}
+
+.meo{
+    color:whitesmoke;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.mainv{
+    display: flex;
+    flex-direction: row;
+    gap:16px;
+}
+
+.mainv img{
+    height:340px;
+}
+
+.heo{
+    color:whitesmoke;
+    font-size: 20px;
+}
+
+.reo{
+    display: flex;
+    flex-direction: row;
+    gap: 26px;
+    margin-left: 660px;
+    margin-top: 26px;
+    margin-bottom: 20px;
+}
+
+.rew{
+    font-size: 14px;
+    color: white;
+}
+
+.tui{
+    height:40px;
+    width:70px;
+    background-color: orange;
+    border: none;
+}
+
+.tui:hover{
+    background-color: orange;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tew{
+    height:40px;
+    width:120px;
+    background-color: orange;
+    border: none;
+}
+
+.tew:hover{
+    background-color: orange;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.bpy img{
+    height:560px;
+    width:400px;
+}
+
+.bpt img{
+    height:360px;
+}

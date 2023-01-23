@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AlgoViz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=10.0">
+    <link rel="shortcut icon" href="./logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body onload="zoom()">
+    <div class="nav">
+        <div class="logo">
+            <div class="rtc">
+                <img src="assets/images/logo.png">
+            </div>
+            <div class="tmt">
+                <span class="txt">
+                    <h1 class="rzt">Algo</h1>
+                </span> 
+                <span class="txts">
+                    <h1 class="tzt">Viz</h1>
+                </span>
+            </div>
+        </div>
+        <div class="tuo animate__animated animate__fadeIn animate__delay-1s">
+            <a href="#">
+                <button class="tyo">
+                    <span class="tre">About</span>
+                </button>
+            </a>
+            <a href="index.html">
+                <button class="tyr">
+                    <span class="tre">Visualize</span>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="content">
+            <span class="rex">ABOUT OUR ALGORITHMS</span>
+        </div>
+        <div class="about">
+            <div class="deo">
+                <span class="leo">BUBBLE SORT</span>
+                <div class="mainc">
+                    <img src="assets/images/bsort.png">
+                    <div class="keo">
+                        <span class="meo">
+                            Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.
+                        </span>
+                        <span class="meo">
+                            Due to its simplicity, bubble sort is often used to introduce the concept of a sorting algorithm. 
+                        </span>
+                        <div class="teo">
+                            <span class="meo">
+                                <strong>Time Complexity: O(N*N) </strong>
+                            </span>
+                            <span class="meo">
+                                <strong>Auxiliary Space: O(1) </strong>
+                            </span>
+                        </div>
+                        <span class="meo">
+                            The above function always runs O(N*N) time even if the array is sorted. It can be optimized by stopping the algorithm if the inner loop didn’t cause any swap. 
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="deo">
+                <span class="leo">MERGE SORT</span>
+                <div class="mainv">
+                    <img src="assets/images/msort.png">
+                    <div class="keo">
+                        <span class="heo">
+                            Merge sort is a sorting algorithm that works by dividing an array into smaller subarrays, sorting each subarray, and then merging the sorted subarrays back together to form the final sorted array.
+                        </span>
+                        <span class="heo">
+                            In simple terms, we can say that the process of merge sort is to divide the array into two halves, sort each half, and then merge the sorted halves back together. This process is repeated until the entire array is sorted.
+                        </span>
+                        <span class="heo">
+                            Merge sort is a popular choice for sorting large datasets because it is relatively efficient and easy to implement.
+                        </span>
+                        <div class="teo">
+                            <span class="heo">
+                                <strong>Time Complexity: O(N log(N))</strong>,  Sorting arrays on different machines. Merge Sort is a recursive algorithm and time complexity can be expressed as following recurrence relation.
+                            </span>
+                            <span class="heo">
+                                T(n) = 2T(n/2) + θ(n)
+                            </span>
+                            <span class="heo">
+                                The above recurrence can be solved either using the Recurrence Tree method or the Master method.
+                            </span>
+                        </div>
+                        <span class="heo">
+                            <span class="heo">
+                                Auxiliary Space: O(n), In merge sort all elements are copied into an auxiliary array. So N auxiliary space is required for merge sort. 
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="deo">
+                <span class="leo">QUICK SORT</span>
+                <div class="mainc">
+                    <img src="assets/images/qsort.png">
+                    <div class="keo">
+                        <span class="meo">
+                            Like Merge Sort, QuickSort is a Divide and Conquer algorithm. It picks an element as a pivot and partitions the given array around the picked pivot.
+                        </span>
+                        <span class="meo">
+                            The key process in quickSort is a partition(). 
+                        </span>
+                        <div class="teo">
+                            <span class="meo">
+                                Time taken by QuickSort, in general, can be written as follows. 
+                            </span>
+                            <span class="meo">
+                                T(n) = T(k) + T(n-k-1) + θ(n)
+                            </span>
+                            <span class="meo">
+                                The solution of above recurrence is also O(nLogn):
+                            </span>
+                            <span class="meo">
+                                Auxiliary Space: O(n) 
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="deo">
+                <span class="leo">HEAP SORT</span>
+                <div class="mainc">
+                    <img src="assets/images/hsort.png">
+                    <div class="keo">
+                        <span class="meo">
+                            Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to the selection sort where we first find the minimum element and place the minimum element at the beginning. Repeat the same process for the remaining elements.
+                        </span>
+                        <span class="meo">
+                            Heap sort is an in-place algorithm. 
+                        </span>
+                        <span class="meo">
+                            Its typical implementation is not stable, but can be made stable.
+                        </span>
+                        <div class="teo">
+                            <span class="meo">
+                               <strong> Time Complexity: O(N log N) </strong>
+                            </span>
+                            </span>
+                            <span class="meo">
+                            <strong>Auxiliary Space: O(1) </strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="deo">
+                <span class="leo">SELECTION SORT</span>
+                <div class="mainc">
+                    <div class="bpy">
+                        <img src="assets/images/ssort.png">
+                    </div>
+                    <div class="keo">
+                        <span class="meo">
+                            Selection sort is a simple and efficient sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unsorted portion of the list and moving it to the sorted portion of the list. 
+                        </span>
+                        <span class="meo">
+                            The algorithm repeatedly selects the smallest (or largest) element from the unsorted portion of the list and swaps it with the first element of the unsorted portion. 
+                        </span>
+                        <span class="meo">
+                            This process is repeated for the remaining unsorted portion of the list until the entire list is sorted.
+                        </span>
+                        <span class="meo">
+                            In every iteration of the selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the beginning of unsorted subarray. 
+                        </span>
+                        <span class="meo">
+                            After every iteration sorted subarray size increase by one and unsorted subarray size decrease by one.
+                        </span>
+                        <div class="teo">
+                            <span class="meo">
+                                Time Complexity: The time complexity of Selection Sort is O(N2) as there are two nested loops: 
+                            </span>
+                            <span class="meo">
+                                One loop to select an element of Array one by one = O(N)
+                            </span>
+                            <span class="meo">
+                                Another loop to compare that element with every other Array element = O(N)
+                            </span>
+                            <span class="meo">
+                                Therefore overall complexity = O(N) * O(N) = O(N*N) = O(N2)
+                            </span>
+                        </div>
+                        <span class="meo">
+                            Auxiliary Space: O(1) as the only extra memory used is for temporary variables while swapping two values in Array. The selection sort never makes more than O(N) swaps and can be useful when memory write is a costly operation.    
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="deo">
+                <span class="leo">INSERTION SORT</span>
+                <div class="mainc">
+                    <div class="bpt">
+                        <img src="assets/images/isort.png">
+                    </div>
+                    <div class="keo">
+                        <span class="meo">
+                            Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at the correct position in the sorted part.
+                        </span>
+                        <span class="meo">
+                            This algorithm is one of the simplest algorithm with simple implementation 
+                        </span>
+                        <span class="meo">
+                            Basically, Insertion sort is efficient for small data values.
+                        </span>
+                        <span class="meo">
+                            Insertion sort is adaptive in nature, i.e. it is appropriate for data sets which are already partially sorted.
+                        </span>
+                        <div class="teo">
+                            <span class="meo">
+                                <strong>Time Complexity: O(N*N) </strong>
+                            </span>
+                            </span>
+                            <span class="meo">
+                                <strong> Space: O(1) </strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reo">
+            <a href="landing.html">
+                <button class="tui"><span class="rew">Go Back</span>
+                </button>
+            </a>
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+        function zoom() {
+            document.body.style.zoom = "70%" 
+        }
+    </script>
+</body>
+</html>

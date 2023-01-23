@@ -155,7 +155,7 @@ window.addEventListener("load",function(){
     renderBars();
     globalThis.blocks = [];
     blocks = document.querySelectorAll(".bars");
-    //! A MUCH BETTER WAY YOU KNOW
+    //! A MUCH BETTER WAY 
     // let temp=blocks[7].textContent;
     // blocks[7].textContent=blocks[0].textContent;
     // blocks[0].textContent=temp;
@@ -970,6 +970,8 @@ function SetZoomSort()
     Page.style.zoom = zoom;
     return false;
 }
+
+
 
 
 
