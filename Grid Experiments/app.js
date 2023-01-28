@@ -36,12 +36,13 @@ window.addEventListener("load",function(){
     });
 })
 click.addEventListener("click",function(){
+    userInput = [];
     startclickedonce=false;
     destclickedonce=false;
     container.innerHTML="";
     let gridlen = 45;
     let gridwid = 22;
-    createlist(gridlen,gridwid);
+    // createlist(gridlen,gridwid);
     for(let i=0;i<gridlen*gridwid;i++)//should be multiple of 45
     {
 
@@ -128,6 +129,9 @@ find.addEventListener("click",function(){
     let dest = document.querySelector(".destnode");
     start = parseInt(start.id);
     dest = parseInt(dest.id)
+    let gridlen = 45;
+    let gridwid = 22;
+    createlist(gridlen,gridwid);
     let adj = adjlist();
     let V = 990;
     let path = shortestPath(V,adj,start,dest);
@@ -147,9 +151,18 @@ function createlist(len,wid)
 {
     console.log("hi");
     let n = len*wid;
+    //* adding horizontal connections
     for(let i=0;i<n-1;i++)
     {
-        if(!(i===(Math.floor(i/len)+1)*len-1))
+        let temp = document.getElementById(i);
+        if(temp.classList.contains("black"))
+        {
+            console.log(temp);
+            userInput.pop();
+            userInput.pop()
+            continue;
+        }
+        else if(!(i===(Math.floor(i/len)+1)*len-1))
         {
             userInput.push(i);
             userInput.push(i+1); 
@@ -157,16 +170,27 @@ function createlist(len,wid)
         }
         
     }
+    //* adding vertical connections
     for(let i=0;i<len;i++)//((i+1)*len)-1
     {
         let temp1 = i;
         let temp2 = i+len;
         while(temp2<n){
-            userInput.push(temp1);
-            userInput.push(temp2);
-            
-            temp1= temp2;
-            temp2=temp2+len;
+            let temp = document.getElementById(temp2);
+            if(temp.classList.contains("black"))
+            {
+                temp1=temp2+len;
+                temp2=temp1+len;
+
+            }
+            else{
+                userInput.push(temp1);
+                userInput.push(temp2);
+                
+                temp1= temp2;
+                temp2=temp2+len;
+
+            }
         }
     }
     // console.log(userInput);
