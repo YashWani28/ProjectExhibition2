@@ -12,7 +12,7 @@
     text-align: center;
     /* color: transparent; */
     color: black;
-    font-size: 10px;
+    /* font-size: 10px; */
     background-color: rgb(230, 224, 224);
     height: 20px;
     width: 20px;
@@ -26,10 +26,12 @@ header{
 }
 .startnode{
     color: black;
-    background-color: yellow;
+    background-color: lightblue;
 }
 .destnode{
     color: black;
-    background-color: red;
+    background-color: lightgreen;
 }
-  
+.yellow{
+    background-color: yellow;
+}  

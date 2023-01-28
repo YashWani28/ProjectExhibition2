@@ -48,7 +48,7 @@ click.addEventListener("click",function(){
 
         let box = document.createElement('div');
         box.id = `${i}`;
-        box.innerHTML=`${i}`;
+        // box.innerHTML=`${i}`;
         // box.setAttribute('id',`${i%45}`);
         box.setAttribute('x',`${i%45}`);//horizontal is X
         box.setAttribute('y',`${Math.floor(i/45)}`);//vertical is y..both are (0,0) ay upper left corner
@@ -125,9 +125,25 @@ start.addEventListener("click",function(){
     })
 })
 find.addEventListener("click",function(){
-    adjlist();
+    let start = document.querySelector(".startnode");
+    let dest = document.querySelector(".destnode");
+    start = parseInt(start.id);
+    dest = parseInt(dest.id)
+    let adj = adjlist();
+    let V = 990;
+    let path = shortestPath(V,adj,start,dest);
+    console.log(path);
+    highlightPath(path);
 })
-
+function highlightPath(path)
+{
+    for(let i=1;i<path.length-1;i++)
+    {
+        let tempid = path[i];
+        let tempbox = document.getElementById(tempid);
+        tempbox.classList.add('yellow');
+    }
+}
 function createlist(len,wid)
 {
     console.log("hi");
@@ -206,11 +222,14 @@ function shortestPath(V,adj,src,dest)
     }
     path.push(src);
     path.reverse();
-    console.log(path);
+    
+    return path;
+
 }
 //*MAIN 
 function adjlist()
 {
+
     let V= 990;
     let E=1913;//edges = (len-1)*wid + (wid-1)*len
     let adj = new Array;
@@ -227,8 +246,9 @@ function adjlist()
         adj[u].push(v);
         adj[v].push(u);
     }
+    return adj;
     // console.log(adj);
-    shortestPath(V,adj,6,200);
+    // shortestPath(V,adj,start,dest);
 
 }
 

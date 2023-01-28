@@ -3,5 +3,6 @@
 3. implement dfs and bfs in c++ on 2d grid
 4. try the same in js
 5. try to use it on the elements on the grid and get an answer in the console
+--done till here
 6. handle obstacles
 7. finally create the animations 
