@@ -13,10 +13,14 @@
     /* color: transparent; */
     color: black;
     /* font-size: 10px; */
+
     background-color: rgb(230, 224, 224);
+    transition: background-color 0.5s;
+    transition: transform 0.1s;
     height: 20px;
     width: 20px;
 }
+
 header{
     text-align: center;
     padding-bottom: 15px;
@@ -36,5 +40,16 @@ header{
     background-color: yellow;
 }  
 .maroon{
-    background-color: maroon;
+    background-color: rgb(135, 239, 79);
+    transform: scale(1.5);
+     
+}
+.maroon2{
+    background-color: rgb(79, 222, 222);
+
+    transform: scale(1);
+}
+.pink{
+    background-color: rgb(208, 65, 89);
+    transform: scale(1.5);
 }

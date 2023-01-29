@@ -144,7 +144,8 @@ find.addEventListener("click",function(){
     let adj = adjlist();
     let V = 990;
     let answer = shortestPath(V,adj,start,dest);
-    console.log(answer[0]);
+    
+  
     // highlightPath(answer[0]);
     animatetraveral(answer[1],answer[0]);
 })
@@ -154,7 +155,7 @@ async function highlightPath(path)
     {
         let tempid = path[i];
         let tempbox = document.getElementById(tempid);
-        tempbox.classList.remove('maroon');
+        tempbox.classList.remove('maroon2');
         tempbox.classList.add('yellow');
         await sleep(40);
 
@@ -166,9 +167,20 @@ async function animatetraveral(traversal,path)
     {
         let temp = document.getElementById(traversal[i]);
         temp.classList.add("maroon");
-        await sleep(40);
+        await sleep(20);
+        temp.classList.remove("maroon");
+        temp.classList.add("maroon2");
+        await sleep(0.1);     
     }
-    highlightPath(path);
+    if(!(path==-1))
+    {
+
+        highlightPath(path);
+    }
+    else{
+        alert("no path exists!!");
+
+    }
 
 }
 function createlist(len,wid)
@@ -262,6 +274,11 @@ function shortestPath(V,adj,src,dest)
                 
             }
         });
+    }
+    if(!found)
+    {
+        return [-1,traversal];
+        
     }
     let next = dest;
     var path = [];
