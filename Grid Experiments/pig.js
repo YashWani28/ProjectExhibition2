@@ -1,4 +1,8 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time))
+}
+
 var Q = require("./queue.js");
 var click = document.querySelector(".generateGridbtn");
 var container = document.querySelector(".grid-container");
@@ -11,6 +15,7 @@ var destclickedonce = false;
 var userInput = [];
 
 window.addEventListener("load",function(){
+    initialize();
     startclickedonce=false;
     destclickedonce=false;
     container.innerHTML="";
@@ -35,8 +40,11 @@ window.addEventListener("load",function(){
             currbar.classList.toggle("black");
         })
     });
+    initialize();
+
 })
-click.addEventListener("click",function(){
+function initialize()
+{
     userInput = [];
     startclickedonce=false;
     destclickedonce=false;
@@ -69,8 +77,8 @@ click.addEventListener("click",function(){
             currbar.classList.toggle("black");
         })
     });
-
-})
+}
+click.addEventListener("click",initialize);
 /*clear.addEventListener("click",function(){
     var boxes=document.querySelectorAll('.grid-item');
     startclickedonce=false;
@@ -135,18 +143,33 @@ find.addEventListener("click",function(){
     createlist(gridlen,gridwid);
     let adj = adjlist();
     let V = 990;
-    let path = shortestPath(V,adj,start,dest);
-    console.log(path);
-    highlightPath(path);
+    let answer = shortestPath(V,adj,start,dest);
+    console.log(answer[0]);
+    // highlightPath(answer[0]);
+    animatetraveral(answer[1],answer[0]);
 })
-function highlightPath(path)
+async function highlightPath(path)
 {
     for(let i=1;i<path.length-1;i++)
     {
         let tempid = path[i];
         let tempbox = document.getElementById(tempid);
+        tempbox.classList.remove('maroon');
         tempbox.classList.add('yellow');
+        await sleep(40);
+
     }
+}
+async function animatetraveral(traversal,path)
+{
+    for(let i=1;i<traversal.length;i++)
+    {
+        let temp = document.getElementById(traversal[i]);
+        temp.classList.add("maroon");
+        await sleep(40);
+    }
+    highlightPath(path);
+
 }
 function createlist(len,wid)
 {
@@ -205,7 +228,7 @@ function shortestPath(V,adj,src,dest)
     let where = new Array(V);
     let cost = new Array(V);
     var q = Q.createQueue(5);
-    let traversal  = new Array(V);
+    let traversal  = [];
     let visited = new Array(V).fill(0);
     visited[src]=1;
     cost[src]=0;
@@ -219,7 +242,11 @@ function shortestPath(V,adj,src,dest)
             break;
         }
         let Y = q.shift() // in this queue implementation, the popped element is returned as well
-        traversal.push(Y);
+        if(!found)
+        {
+
+            traversal.push(Y);
+        }
 
         adj[Y].forEach(it => {
             if(!visited[it])
@@ -232,7 +259,7 @@ function shortestPath(V,adj,src,dest)
             if(it==dest)
             {
                 found=1;
-               
+                
             }
         });
     }
@@ -247,7 +274,7 @@ function shortestPath(V,adj,src,dest)
     path.push(src);
     path.reverse();
     
-    return path;
+    return [path,traversal];
 
 }
 //*MAIN 
