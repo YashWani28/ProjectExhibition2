@@ -165,7 +165,11 @@ async function animatetraveral(traversal,path)
     for(let i=1;i<traversal.length;i++)
     {
         let temp = document.getElementById(traversal[i]);
-        temp.classList.add("maroon");
+        if(!temp.classList.contains("black"))
+        {
+
+            temp.classList.add("maroon");
+        }
         await sleep(20);
         temp.classList.remove("maroon");
         temp.classList.add("maroon2");
@@ -187,23 +191,48 @@ function createlist(len,wid)
     console.log("hi");
     let n = len*wid;
     //* adding horizontal connections
-    for(let i=0;i<n-1;i++)
-    {
-        let temp = document.getElementById(i);
-        if(temp.classList.contains("black"))
-        {
-            console.log(temp);
-            userInput.pop();
-            userInput.pop()
-            continue;
-        }
-        else if(!(i===(Math.floor(i/len)+1)*len-1))
-        {
-            userInput.push(i);
-            userInput.push(i+1); 
+    // for(let i=0;i<n-1;i++)
+    // {
+    //     let temp = document.getElementById(i);
+    //     if(temp.classList.contains("black"))
+    //     {
+    //         console.log(temp);
+    //         userInput.pop();
+    //         userInput.pop()
+    //         continue;
+    //     }
+    //     else if(!(i===(Math.floor(i/len)+1)*len-1))
+    //     {
+    //         userInput.push(i);
+    //         userInput.push(i+1); 
             
-        }
+    //     }
         
+    // }
+    for(let i=0;i<wid;i++)
+    {
+        let temp1=i*len;
+        let temp2=temp1+1;
+        while(temp2<(i+1)*len)
+        {
+            let tempa = document.getElementById(temp1);
+            let tempb = document.getElementById(temp2);
+            if(tempa.classList.contains("black") || tempb.classList.contains("black"))
+            {
+                temp1++;
+                temp2++;
+
+            }
+            else{
+                userInput.push(temp1);
+                userInput.push(temp2);
+                
+                // temp1= temp2;
+                // temp2=temp2+len;
+                temp1++;
+                temp2++;
+            }
+        }
     }
     //* adding vertical connections
     for(let i=0;i<len;i++)//((i+1)*len)-1
@@ -211,20 +240,23 @@ function createlist(len,wid)
         let temp1 = i;
         let temp2 = i+len;
         while(temp2<n){
-            let temp = document.getElementById(temp2);
-            if(temp.classList.contains("black"))
+            let tempa = document.getElementById(temp1);
+            let tempb = document.getElementById(temp2);
+
+            if(tempa.classList.contains("black") || tempb.classList.contains("black"))
             {
-                temp1=temp2+len;
-                temp2=temp1+len;
+                temp1+=len;
+                temp2+=len;
 
             }
             else{
                 userInput.push(temp1);
                 userInput.push(temp2);
                 
-                temp1= temp2;
-                temp2=temp2+len;
-
+                // temp1= temp2;
+                // temp2=temp2+len;
+                temp1+=len;
+                temp2+=len;
             }
         }
     }
@@ -253,11 +285,11 @@ function shortestPath(V,adj,src,dest)
             break;
         }
         let Y = q.shift() // in this queue implementation, the popped element is returned as well
-        if(!found)
-        {
+        // if(!found)
+        // {
 
-            traversal.push(Y);
-        }
+        traversal.push(Y);
+        // }
 
         adj[Y].forEach(it => {
             if(!visited[it])
@@ -289,7 +321,7 @@ function shortestPath(V,adj,src,dest)
     }
     path.push(src);
     path.reverse();
-    
+    console.log(path);
     return [path,traversal];
 
 }
