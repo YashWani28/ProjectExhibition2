@@ -8,7 +8,9 @@ var container = document.querySelector(".grid-container");
 var clear = document.querySelector(".clear");
 var start = document.querySelector(".start");
 var destination = document.querySelector(".destination");
-var find = document.querySelector(".shortest");
+var BFS = document.querySelector(".BFS");
+var random = document.querySelector('.random');
+
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
@@ -132,7 +134,7 @@ start.addEventListener("click",function(){
         })
     })
 })
-find.addEventListener("click",function(){
+BFS.addEventListener("click",function(){
     let start = document.querySelector(".startnode");
     let dest = document.querySelector(".destnode");
     start = parseInt(start.id);
@@ -147,6 +149,10 @@ find.addEventListener("click",function(){
   
     // highlightPath(answer[0]);
     animatetraveral(answer[1],answer[0]);
+})
+random.addEventListener("click",function(){
+    let grid = generateMaze(22,45);
+    console.log(grid);
 })
 async function highlightPath(path)
 {
@@ -350,6 +356,19 @@ function adjlist()
     // shortestPath(V,adj,start,dest);
 
 }
+function generateMaze(rows, cols) {
+    initialize();
+    let n = rows*cols;
+    for(let i=0;i<n;i++)
+    {
+        let box=document.getElementById(i);
+        if(Math.random()>0.7)
+        {
+            box.classList.add("black");
+        }
+    }
+  }
+  
 
 
 
