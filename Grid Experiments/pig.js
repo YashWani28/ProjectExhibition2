@@ -52,6 +52,7 @@ var destination = document.querySelector(".destination");
 var BFS = document.querySelector(".BFS");
 var random = document.querySelector('.random');
 var DFS = document.querySelector(".DFS");
+var removeMark = document.querySelector(".RemoveMarkings");
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
@@ -220,6 +221,25 @@ DFS.addEventListener("click",function(){
   
     // highlightPath(answer[0]);
     animatetraveral(answer[1],answer[0]);
+})
+removeMark.addEventListener("click",function(){
+    gridlen=45;
+    gridwid=22;
+    let blackarr=[];
+    for(let i=0;i<gridlen*gridwid;i++)
+    {
+        let temp = document.getElementById(i);
+        if(temp.classList.contains("black"))
+        {
+            blackarr.push(i);
+        }  
+    }
+    initialize();
+    blackarr.forEach(element => {
+        let temp = document.getElementById(element);
+        temp.classList.add("black");
+    });
+    
 })
 random.addEventListener("click",function(){
     let grid = generateMaze(22,45);
