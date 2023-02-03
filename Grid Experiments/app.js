@@ -1,7 +1,47 @@
 const sleep = (time) => {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
-
+class Stack {
+ 
+    // Array is used to implement stack
+    constructor()
+    {
+        this.items = [];
+    }
+ 
+    // Functions to be implemented
+    push(element)
+    {
+        this.items.push(element);
+    }
+    pop()
+    {
+        // return top most element in the stack
+        // and removes it from the stack
+        // Underflow if stack is empty
+        if (this.items.length == 0)
+            return "Underflow";
+        return this.items.pop();
+    }
+    peek()
+    {
+        // return the top most element from the stack
+        // but does'nt delete it.
+        return this.items[this.items.length - 1];
+    }
+    isEmpty()
+    {
+        // return true if stack is empty
+        return this.items.length == 0;
+    }
+    printStack()
+    {
+        var str = "";
+        for (var i = 0; i < this.items.length; i++)
+            str += this.items[i] + " ";
+        return str;
+    }
+}
 var Q = require("./queue.js");
 var click = document.querySelector(".generateGridbtn");
 var container = document.querySelector(".grid-container");
@@ -10,7 +50,7 @@ var start = document.querySelector(".start");
 var destination = document.querySelector(".destination");
 var BFS = document.querySelector(".BFS");
 var random = document.querySelector('.random');
-
+var DFS = document.querySelector(".DFS");
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
@@ -141,10 +181,40 @@ BFS.addEventListener("click",function(){
     dest = parseInt(dest.id)
     let gridlen = 45;
     let gridwid = 22;
+    for(let i=0;i<gridlen*gridwid;i++)
+    {
+        let box = document.getElementById(i);
+        box.classList.remove("yellow");
+        box.classList.remove("maroon2");
+
+    }
     createlist(gridlen,gridwid);
     let adj = adjlist();
     let V = 990;
     let answer = shortestPath(V,adj,start,dest);
+    
+  
+    // highlightPath(answer[0]);
+    animatetraveral(answer[1],answer[0]);
+})
+DFS.addEventListener("click",function(){
+    let start = document.querySelector(".startnode");
+    let dest = document.querySelector(".destnode");
+    start = parseInt(start.id);
+    dest = parseInt(dest.id)
+    let gridlen = 45;
+    let gridwid = 22;
+    for(let i=0;i<gridlen*gridwid;i++)
+    {
+        let box = document.getElementById(i);
+        box.classList.remove("yellow");
+        box.classList.remove("maroon2");
+
+    }
+    createlist(gridlen,gridwid);
+    let adj = adjlist();
+    let V = 990;
+    let answer = dfs(V,adj,start,dest);
     
   
     // highlightPath(answer[0]);
@@ -368,6 +438,83 @@ function generateMaze(rows, cols) {
         }
     }
   }
+function dfs(V,adj,src,dest)
+{
+    console.log(adj);
+    let where = new Array(V);
+    let cost = new Array(V);
+    var stk = new Stack();
+    let traversal  = [];
+    let visited = new Array(V).fill(0);
+    visited[src]=1;
+    cost[src]=0;
+    where[src]=-1;
+    stk.push(src);
+    let found=0;
+    while(!stk.isEmpty())
+    {
+        if(found)
+        {
+            break;
+        }
+        let Y = stk.pop() // in this queue implementation, the popped element is returned as well
+        // traversal.push(Y);
+       console.log(adj[Y].length);
+        // adj[Y].forEach(it => {
+        //     if(!visited[it] )
+        //     {   
+                
+                
+        //         visited[it]=1;
+        //         stk.push(it);
+        //         traversal.push(it);
+        //         where[it] = Y;
+        //         cost[it] = cost[Y] + 1;
+        //     }
+            
+        //     if(it==dest)
+        //     {
+        //         found=1;
+               
+        //     }
+        // });
+        if(visited[Y] == 0)
+        {
+            traversal.push(Y);
+            visited[Y] = 1;
+        }
+        for(let i=0;i<adj[Y].length;i++)
+        {
+            if(!visited[adj[Y][i]])
+            {
+                // visited[adj[Y][i]]=1;
+                stk.push(adj[Y][i]);
+                // traversal.push(adj[Y][i]);
+                where[adj[Y][i]]=Y;
+                cost[adj[Y][i]]=cost[Y]+1;
+               
+            }
+            if(adj[Y][i]==dest)
+            {
+                found=1;
+            
+            }
+        }
+    }
+    let next = dest;
+    var path = [];
+    while(where[next]!=-1)
+    {
+        path.push(next);
+        next=where[next];
+
+    }
+    path.push(src);
+    path.reverse();
+    console.log(path);
+    console.log(traversal);
+    return [path,traversal];
+}
   
 
 
