@@ -52,6 +52,7 @@ var BFS = document.querySelector(".BFS");
 var random = document.querySelector('.random');
 var DFS = document.querySelector(".DFS");
 var removeMark = document.querySelector(".RemoveMarkings");
+var maze = document.querySelector(".maze");
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
@@ -243,6 +244,76 @@ removeMark.addEventListener("click",function(){
 random.addEventListener("click",function(){
     let grid = generateMaze(22,45);
     console.log(grid);
+})
+maze.addEventListener("click",async function()
+{
+    initialize();
+    let gridlen = 45;
+    let gridwid = 22;
+    let n = gridlen*gridwid;
+    for(let i=0;i<gridlen;i++)
+    {
+        let temp = document.getElementById(i);
+        temp.classList.add("black");
+        await sleep(7);
+
+    }
+    for(let i=gridlen-1;i<n;i+=gridlen)
+    {
+        let temp = document.getElementById(i);
+        temp.classList.add("black");
+        await sleep(7);
+
+    }
+    for(let i=n-1;i>n-gridlen;i--)
+    {
+        let temp = document.getElementById(i);
+        temp.classList.add("black");
+        await sleep(7);
+
+    }
+    for(let i=n-gridlen;i>0;i-=gridlen)
+    {
+        let temp = document.getElementById(i);
+        temp.classList.add("black");
+        await sleep(7);
+
+    }
+    for(let i=0;i<gridlen;i+=2)
+    {
+
+        for(let j =i;j<n;j+=gridlen)
+        {
+            let temp  = document.getElementById(j);
+            let todo = Math.random();
+            if(todo>0.3)
+            {
+                temp.classList.add("black");
+
+            }
+            await sleep(1);
+
+        }
+        
+    }
+    // for(let i=2;i<gridlen-1;i+=2)
+    // {
+    //     for(let k=0;k<5;k++)
+    //     {
+          
+    //         let id = (Math.floor(Math.random()*100)%gridwid)*gridlen + i;
+    //         if(id==0 || id==gridwid-1)
+    //         {
+    //             k--;
+    //         }
+    //         else{
+
+    //             let temp = document.getElementById(id);
+    //             temp.classList.remove("black");
+    //             await sleep(20);
+    //         }
+    //     }
+    // }
 })
 async function highlightPath(path)
 {
@@ -535,6 +606,7 @@ function dfs(V,adj,src,dest)
     console.log(traversal);
     return [path,traversal];
 }
+
   
 
 

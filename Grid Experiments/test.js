@@ -1,10 +1,2 @@
-let i=0;
-while(1)
-{
-    if(i==5)
-    {
-        break;
-    }
-    console.log(i);
-    i++;
-}
+let j = Math.floor(Math.random()*100)%22;
+console.log(j);
