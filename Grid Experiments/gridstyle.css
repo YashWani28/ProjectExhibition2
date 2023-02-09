@@ -1,0 +1,131 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: #cdaaf5;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(45, 0fr);/*45*/
+    grid-template-rows: repeat(auto-fill, 0fr);
+    width: 100%;
+    max-height: 100px;
+    justify-content: center;
+
+    
+  }
+
+  .grid-item {
+    background-color: #f1f1f1;
+    border: 1px solid #999;
+    text-align: center;
+    /* color: transparent; */
+    color: black;
+    /* font-size: 10px; */
+    background-color: rgb(230, 224, 224);
+    transition: background-color 0.5s;
+    transition: transform 0.1s;
+    height: 19px;
+    width: 20px;
+}
+
+header{
+    text-align: center;
+    padding-bottom: 15px;
+    background-color: rgb(181, 92, 14);
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: black 2px solid;
+    height: 140px;
+}
+.btnsets{
+    margin: 0px 25px;
+}
+.black{
+    background-color: black;
+}
+.startnode{
+    color: black;
+    background-color: lightblue;
+}
+.destnode{
+    color: black;
+    background-color: lightgreen;
+}
+.yellow{
+    background-color: yellow;
+}  
+.maroon{
+    background-color: rgb(111, 255, 0);
+    transform: scale(1.5);
+     
+}
+.maroon2{
+    background-color: rgb(116, 205, 253);
+    /* background-color: maroon; */
+
+
+    transform: scale(1);
+}
+.pink{
+    background-color: rgb(208, 65, 89);
+    transform: scale(1.5);
+}
+.btncontainer{
+    display: flex;
+    justify-content: space-around;
+}
+.btnsets{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+}
+.colorcode  {
+    display: flex;
+    /* align-items: center; */
+    justify-content:space-evenly;
+    margin-top: 10px;
+}
+.colorcode ul{
+    display: flex;
+    justify-content: left;
+    background-color: black;
+    width: 50%;
+    border-radius: 5px;
+}
+.colorcode li{
+    margin-right: 50px;
+    
+}
+.btn{
+    color: white;
+    background-color: transparent;
+    margin: 4px 0px;
+    border: transparent;
+    font-weight: 900;
+}
+.btn:hover{
+    color: rgb(0, 12, 248);
+    background-color: #f1f1f1;
+
+}
+.hellocontent{
+    /* display:b; */
+    background-color: black;
+    text-align: center;
+    width: 60%;
+    color:white;
+    max-width: 400px;
+    max-height: 120px;
+    border-radius: 5px;
+    transition: transform 1s;
+
+}
+.disable{
+    color: #dbcdcd91;
+    background-color: rgb(243, 118, 118);
+    
+}

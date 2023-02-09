@@ -53,6 +53,8 @@ var random = document.querySelector('.random');
 var DFS = document.querySelector(".DFS");
 var removeMark = document.querySelector(".RemoveMarkings");
 var maze = document.querySelector(".maze");
+var contentbox = document.querySelector(".hellocontent");
+var tobedisabled = document.querySelectorAll(".btn");
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
@@ -62,6 +64,7 @@ window.addEventListener("load",function(){
     startclickedonce=false;
     destclickedonce=false;
     container.innerHTML="";
+    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
     for(let i=0;i<990;i++)//should be multiple of 45
     {
 
@@ -88,6 +91,8 @@ window.addEventListener("load",function(){
 })
 function initialize()
 {
+    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
+
     userInput = [];
     startclickedonce=false;
     destclickedonce=false;
@@ -109,17 +114,21 @@ function initialize()
         container.appendChild(box);
     }
     var boxes=document.querySelectorAll('.grid-item');
+    // boxes.forEach(element => {
+    //     element.addEventListener("click",event=>{
+    //         let currbar = event.currentTarget;
+            
+    //         currbar.classList.toggle("black");
+    //     })
+    // });
     boxes.forEach(element => {
-        element.addEventListener("click",event=>{
-            let currbar = event.currentTarget;
-            // if(currbar.classList.contains("startnode"))
-            // {
-            //     alert("marked as start already!!");
-            //     return;
-            // }
-            currbar.classList.toggle("black");
-        })
+        element.addEventListener("click",toggleblack);
     });
+}
+function toggleblack(event)
+{
+    let currbar = event.currentTarget;
+    currbar.classList.toggle("black");
 }
 click.addEventListener("click",initialize);
 /*clear.addEventListener("click",function(){
@@ -177,6 +186,18 @@ start.addEventListener("click",function(){
     })
 })
 BFS.addEventListener("click",function(){
+    if(startclickedonce===false || destclickedonce===false)
+    {
+        alert("Please assign start and destination nodes first");
+        return;
+    }
+    contentbox.innerHTML=`Breadth-first search is an unweighted search technique and guarantees shortest path<br><br>Time Complexity:O(V+E) || Auxillary Space:O(V)<br> <button id="bfsinfobtn" style="color:lightblue;text-decoration:underline italics;background-color: transparent">CLICK FOR MORE INFO</button>`;
+    disable();
+    //?to disable stop the boxes from being clicked during execution, we will remove their event listners. Highlight path function will add it back
+    var boxes=document.querySelectorAll('.grid-item');
+    boxes.forEach(element => {
+        element.removeEventListener("click",toggleblack);
+    });
     let start = document.querySelector(".startnode");
     let dest = document.querySelector(".destnode");
     start = parseInt(start.id);
@@ -200,6 +221,18 @@ BFS.addEventListener("click",function(){
     animatetraveral(answer[1],answer[0]);
 })
 DFS.addEventListener("click",function(){
+    if(startclickedonce===false || destclickedonce===false)
+    {
+        alert("Please assign start and destination nodes first");
+        return;
+    }
+    contentbox.innerHTML=`Depth-first search is an unweighted search technique but DOES NOT guarantee shortest path<br><br>Time Complexity:O(V+E) || Auxillary Space:O(V)<br> <button id="dfsinfobtn" style="color:lightblue;text-decoration:underline italics;background-color: transparent">CLICK FOR MORE INFO</button>`;
+    disable();
+    //?to disable stop the boxes from being clicked during execution, we will remove their event listners. Highlight path function will add it back
+    var boxes=document.querySelectorAll('.grid-item');
+    boxes.forEach(element => {
+        element.removeEventListener("click",toggleblack);
+    });
     let start = document.querySelector(".startnode");
     let dest = document.querySelector(".destnode");
     start = parseInt(start.id);
@@ -223,6 +256,8 @@ DFS.addEventListener("click",function(){
     animatetraveral(answer[1],answer[0]);
 })
 removeMark.addEventListener("click",function(){
+    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
+
     gridlen=45;
     gridwid=22;
     let blackarr=[];
@@ -315,6 +350,20 @@ maze.addEventListener("click",async function()
     //     }
     // }
 })
+contentbox.addEventListener("click",function(event){
+    if(event.target.tagName=="BUTTON")
+    alert("butn");
+    {
+        if(event.target.id==="dfsinfobtn")
+        {
+            dfsInfo();
+        }
+        if(event.target.id==="bfsinfobtn")
+        {
+            bfsInfo();
+        }
+    }
+})
 async function highlightPath(path)
 {
     for(let i=1;i<path.length-1;i++)
@@ -326,18 +375,25 @@ async function highlightPath(path)
         await sleep(40);
 
     }
+    enable();
+    //?adding the event listners back to grid items to allow them to turn black upon clicking after the current execution is finished.
+    var boxes=document.querySelectorAll('.grid-item');
+    boxes.forEach(element => {
+        element.addEventListener("click",toggleblack);
+    });
 }
 async function animatetraveral(traversal,path)
 {
     for(let i=1;i<traversal.length;i++)
     {
+        let interval = setspeed();
         let temp = document.getElementById(traversal[i]);
         if(!temp.classList.contains("black"))
         {
 
             temp.classList.add("maroon");
         }
-        await sleep(20);
+        await sleep(interval);
         temp.classList.remove("maroon");
         temp.classList.add("maroon2");
         await sleep(0.1);     
@@ -349,7 +405,12 @@ async function animatetraveral(traversal,path)
     }
     else{
         alert("no path exists!!");
-
+        enable();
+        //?adding the event listners back to grid items to allow them to turn black upon clicking after the current execution is finished.
+        var boxes=document.querySelectorAll('.grid-item');
+        boxes.forEach(element => {
+            element.addEventListener("click",toggleblack);
+        });
     }
 
 }
@@ -429,7 +490,56 @@ function createlist(len,wid)
     }
     // console.log(userInput);
 }
+function setspeed()
+{
+    var speedtoggle = document.getElementById("gridspeedtoggle");
 
+    if(speedtoggle.value==="FAST")
+    {
+ 
+        return 7;
+    }
+    else if(speedtoggle.value==="MEDIUM")
+    {
+
+
+        return 20;
+
+    }
+    else if(speedtoggle.value==="SLOW")
+    {
+        return 150;
+    }
+    else if(speedtoggle.value==="VSLOW")
+    {
+        return 400;
+    }
+
+}
+function disable()
+{
+
+    tobedisabled.forEach(element => {
+        element.disabled = true;
+        element.classList.add("disable")
+    });
+}
+function enable()
+{
+    tobedisabled.forEach(element => {
+        element.disabled = false;
+        element.classList.remove("disable")
+
+    });
+}
+function dfsInfo()
+{
+    alert("hi");
+}
+function bfsInfo()
+{
+    alert("hi");
+}
 //* shortest path starts here
 
 
