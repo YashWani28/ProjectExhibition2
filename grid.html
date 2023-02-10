@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/gridstyle.css">
+    <link rel="stylesheet" href="./assets/css/dfsinfomodal.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> -->
+    <title>Document</title>
+</head>
+<body >
+    <header>
+        <div class="tobecentered">
+
+            <div class="btncontainer">
+                <div class="clearbtnscontainer btnsets">
+                    <button class="generateGridbtn btn">CLEAR</button>
+                    <button class="RemoveMarkings btn">REMOVE MARKINGS</button>
+    
+                </div>
+                <div class="nodebtnscontainer btnsets">
+                    <button class="start btn">ADD START</button>
+                    <button class="destination btn">ADD DESTINATION</button>
+    
+                </div>
+                <div class="mazebtnscontainer btnsets">
+    
+                    <button class="random btn">RNDM OBSTACLES</button>
+                    <button class="maze btn">MAZE</button>
+                </div>
+                <div class="searchbtnscontainer btnsets">
+                    <button class="BFS btn">Breadth-First Search</button>
+                    <button class="DFS btn">Depth-First Search</button>
+    
+                </div>
+                
+                <div class="speedtogglecontainer btnsets">
+                    <label for="speedtoggle" style="color: white">Change speed</label>
+                    <select name="speedtoggle" id="gridspeedtoggle"> 
+                        <option value="FAST">FAST</option>
+                        <option value="MEDIUM" selected>MEDIUM</option>
+                        <option value="SLOW">SLOW</option>
+                        <option value="VSLOW">V.SLOW</option>
+
+    
+                    </select>
+                </div>
+                
+                <!-- <button class="clear btn">CLEAR</button> -->
+            </div>
+            <div class="colorcode">
+                <ul>
+                    <li style="color: rgb(119, 225, 249)">Visited nodes</li>
+                    <li style="color: rgb(230, 224, 224)">Unvisited nodes</li>
+                    <li style="color: lightblue">Start node</li>
+                    <li style="color: lightgreen">Destination node</li>
+                    <li style="color: yellow">Path</li>
+
+                </ul>
+                <div class="hellocontent"></div>
+            </div>
+            
+        </div>
+
+
+
+
+        
+    </header>
+    <div class="grid-container">
+    
+    </div>
+    <!--? MODAL HTML: -->
+    <div class="dfsmodal_container">
+        <div class="dfsmodal">
+            <header class="dfsmodalheader"></header>
+            <div class="dfsmodalbody">
+               
+                
+            </div>
+            <div class="dfsclosebtncontainer">
+
+                <button class="dfsclosebtn"><strong>CLOSE</strong></button>
+            </div>
+        </div>
+    </div>
+    <div class="searchtrans_layer">
+        
+    </div>
+    <script src="./assets/js/pig.js"></script>
+   
+</body>
+</html>

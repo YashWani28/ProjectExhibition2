@@ -1,0 +1,210 @@
+
+body{
+    background-color: hsl(86, 45%, 54%);
+    background-image: cover;
+    padding:0;
+    margin:0;
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    left: 0;
+    top: 0;
+    zoom: 70%;
+}
+
+.nav{
+    width:100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    gap:1000px;
+}
+
+.tuo{
+    margin-top: 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.tyo{
+    height:40px;
+    width:70px;
+    background-color: transparent;
+    border: none;
+}
+
+.tyr:hover{
+    background-color: goldenrod;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tyr{
+    height:40px;
+    width:80px;
+    border:none;
+    border-radius: 4px;
+    background-color: orange;
+}
+
+.tyo:hover{
+    background-color: orange;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+    cursor: pointer;
+}
+
+.tre{
+    font-size: medium;
+    font-weight: 200;
+    color: white;
+}
+
+.logo{
+    margin-top:-20px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap:1px;
+}
+
+.rtc{
+    margin-top: 24px;
+    margin-left: 48px;
+}
+
+.rtc img{
+    height:40px;
+    width:40px;
+}
+
+.tmt{
+    margin-top: 10px;
+    margin-left: -28px;
+}
+
+.rzt{
+    margin-left: 40px;
+    color:aqua;
+}
+
+.tzt{
+    margin-left:100px;
+    margin-top:-60px;
+    color:yellow;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 28px;
+    gap:40px;
+}
+
+.wer{
+    color:rgba(255, 255, 0, 0.74);
+    font-size: 80px;
+    margin-left: 450px;
+    font-weight: 400;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.boc{
+    display: flex;
+    flex-direction: row;
+    gap:240px;
+    margin-left: 180px;
+    margin-top: 26px;
+}
+
+.bocx{
+    height:360px;
+    width:440px;
+    border-top:2px solid hsla(86, 45%, 54%, 0.821);
+    border-bottom:2px solid hsla(86, 45%, 54%, 0.821);
+    border-left:2px solid hsla(86, 45%, 54%, 0.821);
+    border-right:2px solid hsla(86, 45%, 54%, 0.821);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.749);
+    display:flex;
+    flex-direction: column;
+    gap:6px;
+}
+
+.bocs{
+    height:360px;
+    width:440px;
+    border-top:2px solid hsla(86, 45%, 54%, 0.821);
+    border-bottom:2px solid hsla(86, 45%, 54%, 0.821);
+    border-left:2px solid hsla(86, 45%, 54%, 0.821);
+    border-right:2px solid hsla(86, 45%, 54%, 0.821);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.749);
+    display:flex;
+    flex-direction: column;
+    gap:6px;
+}
+
+.ruy{
+    margin-top: 10px;
+    margin-left: 10px;
+    height:280px;
+    width:416px;
+    border-top:2px solid orange;
+    border-bottom:2px solid orange;
+    border-left:2px solid orange;
+    border-right:2px solid orange;
+    border-radius: 5px;
+    padding-top: 6px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+   
+.sim{
+    height:50px;
+    width:140px;
+    color:white;
+    background-color: orange;
+    border-radius: 4px;
+    cursor: pointer;
+    border:none;
+    margin-left: 142px;
+}
+
+.sim:hover{
+    background-color: goldenrod;
+    box-shadow: 0 10px 36px rgba(255, 255, 0, 0.573);
+}
+
+.wes{
+    font-size: medium;
+    font-weight: 200;
+}
+
+.rew{
+    font-size: 26px;
+    color:maroon;
+    font-weight: 200;
+    margin-left: 132px;
+}
+
+.rez{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+}
+
+.rec{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.reh{
+    color:rgba(0, 0, 0, 0.755);
+    margin-left: 4px;
+    font-size: medium;
+
+}
