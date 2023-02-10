@@ -55,16 +55,22 @@ var removeMark = document.querySelector(".RemoveMarkings");
 var maze = document.querySelector(".maze");
 var contentbox = document.querySelector(".hellocontent");
 var tobedisabled = document.querySelectorAll(".btn");
+var dfsmodal = document.querySelector(".dfsmodal_container");
+var dfsmodalbody = document.querySelector(".dfsmodalbody");
+var dfsmodalheader = document.querySelector(".dfsmodalheader");
+var translayer = document.querySelector(".searchtrans_layer");
+var dfsmodalclosebtn = document.querySelector(".dfsclosebtn");
 var startclickedonce =false;
 var destclickedonce = false;
 var userInput = [];
 
 window.addEventListener("load",function(){
     initialize();
+    hidedfsInfo();
     startclickedonce=false;
     destclickedonce=false;
     container.innerHTML="";
-    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
+    contentbox.innerHTML="Select ADD START option and click one of the boxes to assign it as start node. Do the same for ADD DESTINATION. You can also click on any box to mark it as an obstacle. After this you can click on any of the search algorithms to see the animation !!!";
     for(let i=0;i<990;i++)//should be multiple of 45
     {
 
@@ -91,7 +97,8 @@ window.addEventListener("load",function(){
 })
 function initialize()
 {
-    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
+    contentbox.innerHTML="Select ADD START option and click one of the boxes to assign it as start node. Do the same for ADD DESTINATION. You can also click on any box to mark it as an obstacle. After this you can click on any of the search algorithms to see the animation !!!";
+
 
     userInput = [];
     startclickedonce=false;
@@ -256,7 +263,8 @@ DFS.addEventListener("click",function(){
     animatetraveral(answer[1],answer[0]);
 })
 removeMark.addEventListener("click",function(){
-    contentbox.innerHTML="Select ADD START option and click of the boxes to assign it as start node. Do the same for ADD DESTINATION. Then click on any of the search algorithms to see the animation !!!";
+    contentbox.innerHTML="Select ADD START option and click one of the boxes to assign it as start node. Do the same for ADD DESTINATION. You can also click on any box to mark it as an obstacle. After this you can click on any of the search algorithms to see the animation !!!";
+
 
     gridlen=45;
     gridwid=22;
@@ -352,18 +360,25 @@ maze.addEventListener("click",async function()
 })
 contentbox.addEventListener("click",function(event){
     if(event.target.tagName=="BUTTON")
-    alert("butn");
+    
     {
         if(event.target.id==="dfsinfobtn")
         {
-            dfsInfo();
+            showdfsInfo();
         }
         if(event.target.id==="bfsinfobtn")
         {
-            bfsInfo();
+            showbfsInfo();
         }
     }
 })
+dfsmodalclosebtn.addEventListener("click",hidedfsInfo);
+
+translayer.addEventListener("click",hidedfsInfo);
+
+
+ 
+
 async function highlightPath(path)
 {
     for(let i=1;i<path.length-1;i++)
@@ -532,13 +547,30 @@ function enable()
 
     });
 }
-function dfsInfo()
+function showdfsInfo()
 {
-    alert("hi");
+    dfsmodalbody.innerHTML="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis corrupti illo repellendus odit vero sunt aliquam eveniet expedita ut! Porro illum ducimus inventore, quo eos est numquam reiciendis cupiditate sit quos dolores impedit ad minima obcaecati iste veniam suscipit accusantium nesciunt asperiores. Labore enim blanditiis corrupti incidunt dolor sequi obcaecati praesentium ut, ab voluptas amet repellendus laudantium quidem facilis, pariatur vitae! Saepe earum dicta debitis ad, quos fuga esse accusamus maxime unde nihil dignissimos tempore quidem fugit illum harum aperiam quibusdam deserunt mollitia adipisci id eveniet quam voluptas alias modi. Expedita quibusdam nobis et, consectetur quod accusantium molestias fuga est. Expedita quos quibusdam aliquid perspiciatis libero placeat quaerat minus quidem, maiores amet qui. Nostrum amet vel aperiam doloribus earum, inventore recusandae quidem porro similique quisquam, nemo eius voluptatum, deleniti libero facilis praesentium non quas saepe eveniet nihil ex aut voluptas officiis. Hic, atque laborum! Quasi in laudantium eos! Nobis eveniet in quos id! Laborum id praesentium nisi unde facilis ducimus et adipisci eos veritatis ipsa perspiciatis ipsum modi earum dolorum similique voluptatibus totam laudantium sunt pariatur, exercitationem, enim debitis deleniti numquam alias. Maxime eum dolorem illo ab voluptate repellat id magnam quos sed ex hic odit, temporibus ad rem corrupti incidunt officia. Fugiat placeat voluptatum ea, praesentium iusto quidem! Cupiditate odio, obcaecati perspiciatis corporis quas quidem alias voluptatibus nisi, accusamus accusantium sequi reprehenderit, non autem quisquam quo aliquid veritatis id omnis assumenda officiis! Consequuntur numquam ut natus et iure. Tempore explicabo deleniti quam in iusto sunt atque ipsam, est illum natus dolorum, architecto ipsa dolores qui excepturi. Magni, maxime consequatur autem, earum labore quod libero ex alias sed fuga harum. Ipsam natus voluptatem pariatur qui libero ipsa sit vel amet, soluta repudiandae sapiente minima molestias aliquam nostrum laboriosam impedit veritatis nobis fuga quod? Accusamus deleniti nulla libero quam placeat quod vero deserunt delectus tenetur, enim ad vel illum quaerat perspiciatis aliquid. Voluptatem, beatae nostrum. Sed quos architecto dignissimos unde consequatur, earum adipisci magni, voluptatum modi, assumenda repellat nisi quibusdam nobis asperiores quae! Totam laborum placeat quo quas, iusto libero, illo exercitationem nulla, quaerat voluptatibus minus tempora maxime perspiciatis consequatur quia deleniti atque nam necessitatibus incidunt non dolores soluta voluptas. Eligendi provident eos deleniti! Quod sint dolores, rerum esse eligendi quis consectetur facilis provident alias id mollitia molestiae consequatur ea totam minima temporibus dignissimos odit beatae aliquam ipsum reprehenderit amet architecto necessitatibus facere? Est quasi cumque adipisci ab, facilis debitis ea incidunt vitae officia consectetur dignissimos non nemo fugit minus! Commodi, ducimus nesciunt! Quia possimus quidem fugit voluptate aspernatur voluptates distinctio explicabo rerum eius excepturi, sed dolores ducimus! Reprehenderit, illum non veniam aspernatur minima accusamus molestias enim perferendis. Recusandae dignissimos voluptates fugiat! Corporis, ratione a non similique iusto expedita repellat omnis id. Excepturi ullam perspiciatis at tempore libero iusto incidunt earum temporibus necessitatibus fugit ipsa vel quo repudiandae molestiae nostrum facilis, sed nulla aliquid autem dolore deserunt quasi. Eos commodi obcaecati voluptas tempore provident nam blanditiis necessitatibus dolores consequuntur. Consequatur facilis illum assumenda, nemo nulla architecto esse nesciunt. Quod, ex eligendi.";
+    dfsmodalheader.innerHTML="Depth First Search";
+    dfsmodal.classList.remove("hide_display");
+    translayer.classList.remove("hide_display");
+    document.body.style.overflow="hidden";
+    // let dfsmodalbody = document.querySelector(".dfsmodalbody");
+    
 }
-function bfsInfo()
+function hidedfsInfo()
 {
-    alert("hi");
+    dfsmodal.classList.add("hide_display");
+    translayer.classList.add("hide_display");
+    document.body.style.overflow="auto";
+
+}
+function showbfsInfo()
+{
+    dfsmodalbody.innerHTML="bfs content";
+    dfsmodalheader.innerHTML="Breadth First Search";
+    dfsmodal.classList.remove("hide_display");
+    translayer.classList.remove("hide_display");
+    document.body.style.overflow="hidden";
 }
 //* shortest path starts here
 

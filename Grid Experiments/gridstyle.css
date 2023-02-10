@@ -11,7 +11,7 @@ body{
     width: 100%;
     max-height: 100px;
     justify-content: center;
-
+    
     
   }
 
@@ -39,7 +39,7 @@ header{
     margin-bottom: 5px;
     border-radius: 5px;
     border: black 2px solid;
-    height: 140px;
+    height: fit-content;
 }
 .btnsets{
     margin: 0px 25px;
@@ -129,3 +129,9 @@ header{
     background-color: rgb(243, 118, 118);
     
 }
+.hide_display{
+    display: none;
+}
+
+
+/*! modal css 

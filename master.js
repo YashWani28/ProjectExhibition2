@@ -137,6 +137,12 @@ var SpeedSliderVal = document.querySelector("#slider1");
 var ElementsSliderVal = document.querySelector("#slider2");
 var RandomArrBtn = document.querySelector("#generatearrbtn");
 
+/*INFO MODAL VARIABLES */
+var knowmorecontainer = document.querySelector(".rndmarrbtn_container");
+var infomodalTranslayer = document.querySelector(".sortinfotrans_layer");
+var sortinfomodal_container = document.querySelector(".sortinfomodal_container");
+var knowmore = document.querySelector(".knowmore");
+var sortinfoclosebtn = document.querySelector(".sortinfoclosebtn");
 var tobedisabled = document.querySelectorAll(".disenable");
 
 /*Modal variables*/
@@ -149,6 +155,7 @@ var translayer = document.querySelector(".trans_layer");
 // arr2.push(new barobj(99,"blue"));
 window.addEventListener("load",function(){
     console.log("loaded successfully");
+    hideSortInfoModal();
     showmodal();
     SetZoomSort();
     renderInitialBars(ElementsSliderVal.value);
@@ -190,9 +197,11 @@ visbtn.addEventListener("click",function(){
     hidemodal();
 })
 bubblebtn.addEventListener("click",function(){
+    createknowbtn("INFO. ABOUT BUBBLE SORT","bubble");
     bubbleSort();
 })
 mergebtn.addEventListener("click",function(){
+    createknowbtn("INFO. ABOUT MERGE SORT","merge");
     disable();
     // console.log(arr2);
     animations.green=[];
@@ -221,6 +230,7 @@ quickbtn.addEventListener("click",async function(){
     // quickSort(auxarr,0,arr2.length);
     // // console.log(quickSortanimations);
     // // AnimateQuickSort(quickSortanimations);
+    createknowbtn("INFO. ABOUT QUICK SORT","quick");
 
     var quickSort1arr = getarr2values();
     
@@ -242,11 +252,14 @@ quickbtn.addEventListener("click",async function(){
 
 })
 selectionbtn.addEventListener("click",function(){
+    createknowbtn("INFO. ABOUT SELECTION SORT","selection");
+
     var selectionSortarr = getarr2values();
     selectionSort(selectionSortarr);
     console.log(selectionSortarr);
 })
 insertionbtn.addEventListener("click",function(){
+    createknowbtn("INFO. ABOUT INSERTION SORT","insertion");
     var insertionSortarr = getarr2values();
     console.log(insertionSortarr);
     insertionSort(insertionSortarr);
@@ -254,11 +267,16 @@ insertionbtn.addEventListener("click",function(){
 
 })
 heapbtn.addEventListener("click",function(){
+    createknowbtn("INFO. ABOUT HEAP SORT","heap");
     var heaparr = getarr2values();
     heapSort(heaparr);
     console.log(heaparr);
 })
+translayer.addEventListener("click",hidemodal);
 
+sortinfoclosebtn.addEventListener("click",function(){
+    hideSortInfoModal();
+})
 
 //? COLOR CHANGING AND ANIMATION FUNCTIONS-----------------------------
 function turnyellow(bara,barb)
@@ -970,7 +988,76 @@ function SetZoomSort()
     Page.style.zoom = zoom;
     return false;
 }
+function createknowbtn(str,ID)
+{
+    let existing = document.querySelector(".knowmore");
+    if(!(existing===null))
+    {
+        existing.remove();
 
+    }
+
+    let knowbtn = document.createElement("button");
+    knowbtn.innerHTML=str;
+    knowbtn.classList.add("knowmore");
+    knowbtn.id = ID;
+    knowmorecontainer.appendChild(knowbtn);
+    knowbtn.addEventListener("click",function(){
+        showSortInfoModal();
+    })
+    return;
+}
+function showSortInfoModal()
+{
+    infomodalTranslayer.classList.remove("hide_display");
+    infomodalTranslayer.addEventListener("click",function(){
+        hideSortInfoModal();
+        return;
+    })
+    sortinfomodal_container.classList.remove("hide_display");
+    document.body.style.overflow="hidden";
+    addInfotoModal();
+
+}
+function hideSortInfoModal()
+{
+    infomodalTranslayer.classList.add("hide_display");
+    sortinfomodal_container.classList.add("hide_display");
+    document.body.style.overflow="auto";
+
+}
+function addInfotoModal()
+{
+    let sortinfoheader = document.querySelector(".sortinfomodalheader");
+    let sortinfobody = document.querySelector(".sortinfomodalbody");
+    let sortchosen = document.querySelector(".knowmore").id;
+    switch (sortchosen){
+        case "bubble":
+            sortinfobody.innerHTML="bubble sort";
+            sortinfoheader.innerHTML="bubble sort";
+            break;
+        case "insertion":
+            sortinfobody.innerHTML="insertion sort";
+            sortinfoheader.innerHTML="insertion sort";
+            break;
+        case "merge":
+            sortinfobody.innerHTML="merge sort";
+            sortinfoheader.innerHTML="merge sort";
+            break;
+        case "heap":
+            sortinfobody.innerHTML="heap sort";
+            sortinfoheader.innerHTML="heap sort";
+            break;
+        case "selection":
+            sortinfobody.innerHTML="selection sort";
+            sortinfoheader.innerHTML="selection sort";
+            break;
+        case "quick":
+            sortinfobody.innerHTML="quick sort";
+            sortinfoheader.innerHTML="quick sort";
+            break;
+    }
+}
 
 
 

@@ -72,3 +72,24 @@ body{
 .hide_display{
     display: none;
 }
+.rndmarrbtn_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.knowmore{
+    color: blue;
+    height: fit-content;
+    width: 150px;
+    word-wrap: break-word;
+    margin-top: 10px;
+    text-decoration: underline;
+    font-weight: bold;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+.knowmore:hover{
+    color: rgb(13, 4, 190);
+}
